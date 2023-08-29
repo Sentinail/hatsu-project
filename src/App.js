@@ -1,25 +1,31 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useContext } from 'react'
+import StyleContext from './context/themeContext'
+import GlobalStyle from './styled-components/GlobalStyle'
+import { Outlet } from 'react-router-dom'
+import Header from './components/Header'
+import Footer from './components/Footer'
+import { themeContext } from './context/themeContext'
 
-function App() {
+
+const App = () => {
+  const { primaryColor, secondaryColor, tertiaryColor } = useContext(themeContext)
+
+
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+      <>
+        <StyleContext>
+          <GlobalStyle $primaryColor={primaryColor} $secondaryColor={secondaryColor} $tertiaryColor={tertiaryColor}></GlobalStyle>
+          <Header></Header>
+          <main>
+            <Outlet>
+
+            </Outlet>
+          </main>
+          <Footer></Footer>
+        </StyleContext>
+      </>
+  )
 }
 
-export default App;
+export default App
