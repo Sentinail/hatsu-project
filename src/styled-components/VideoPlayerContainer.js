@@ -2,6 +2,10 @@ import { styled } from "styled-components";
 
 export const VideoPlayerContainer = styled.div`
     position: relative;
+    width: 100vh;
+    max-width: 1000px;
+    min-width: 300px;
+    
     
     .option_container {
         width: 100%;

@@ -1,14 +1,15 @@
 import React, {useRef, useState, useContext} from 'react'
 import { VideoPlayerContainer } from '../styled-components/VideoPlayerContainer';
-import VideoJS from '../utilities/VideoJs';
-import videojs from 'video.js';
 import { VideoSettingsContainer } from '../styled-components/VideoSettingsContainer';
 import { themeContext } from '../context/themeContext';
 import { VideoSettingsButton } from '../styled-components/VideoSettingsButton';
+import VideoJS from '../utilities/VideoJs';
+import videojs from 'video.js';
 
-const VideoPlayer = ({ sources, currentIndex, setCurrentIndex }) => {
+const VideoPlayer = ({ sources }) => {
     const [ optionsIsActive, setOptionsIsActive ] = useState(false)
-    const { primaryColor } = useContext(themeContext)
+    const [ currentIndex, setCurrentIndex ] = useState(0)
+    const { primaryColor, secondaryColor } = useContext(themeContext)
     const playerRef = useRef(null);
     const optionRef = useRef(null)
 
@@ -17,7 +18,7 @@ const VideoPlayer = ({ sources, currentIndex, setCurrentIndex }) => {
 
         option.on("options", () => {
             setOptionsIsActive(prevOptionsIsActive => !prevOptionsIsActive);
-            
+            console.log("options")
         })
     }
 
@@ -42,14 +43,16 @@ const VideoPlayer = ({ sources, currentIndex, setCurrentIndex }) => {
 
     return (
     <VideoPlayerContainer $primaryColor={primaryColor} $optionsIsActive={optionsIsActive}>
-        <VideoJS link={sources[currentIndex].url} onOption={handleOptionState} onReady={handlePlayerReady}>
+        <div className='wrapper'>
+            <VideoJS link={sources[currentIndex].url} onOption={handleOptionState} onReady={handlePlayerReady}>
 
-        </VideoJS>
-        <VideoSettingsContainer $optionsIsActive={optionsIsActive} $primaryColor={primaryColor}> 
-         {sources.map((source, index) => {
-            return <VideoSettingsButton onClick={() => {setCurrentIndex(index)}}> { source.quality } </VideoSettingsButton>
-         })}
-        </VideoSettingsContainer>
+            </VideoJS>
+            <VideoSettingsContainer $optionsIsActive={optionsIsActive} $primaryColor={primaryColor}> 
+            {sources.map((source, index) => {
+                return <VideoSettingsButton $secondaryColor={secondaryColor} onClick={() => {setCurrentIndex(index)}}> { source.quality } </VideoSettingsButton>
+            })}
+            </VideoSettingsContainer>
+        </div>
     </VideoPlayerContainer>
     )
 }

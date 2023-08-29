@@ -2,6 +2,8 @@ import React from 'react';
 import videojs from 'video.js';
 import Options from './CostumControlBar';
 import 'video.js/dist/video-js.css';
+import Hls from 'hls.js';
+const hls = new Hls();
 
 export const VideoJS = (props) => {
   const videoRef = React.useRef(null);
@@ -10,25 +12,25 @@ export const VideoJS = (props) => {
 
   React.useEffect(() => {
     const options = {
+      techOrder: ['html5', 'hls'],
       autoplay: true,
       controls: true,
       responsive: true,
-      fluid: true,
-      sources: [{
-        src: link,
-        type: 'application/x-mpegURL'
-      }]
+      fluid: true
     }; 
 
     if (!playerRef.current) {
-      const videoElement = document.createElement("video-js");
-
-      videoElement.classList.add('vjs-big-play-centered');
-      videoRef.current.appendChild(videoElement);
-
-      const player = playerRef.current = videojs(videoElement, options, () => {
+      const player = playerRef.current = videojs(videoRef.current, options, () => {
         onReady && onReady(player);
       });
+      
+      if (Hls.isSupported()) {
+        hls.loadSource(link);
+        hls.attachMedia(videoRef.current);
+        
+      } else if (videoRef.current.canPlayType('application/vnd.apple.mpegurl')) {
+        videoRef.current.src = link;
+      }
 
       const OptionIcon = new Options(player, {})
       player.getChild("controlBar").addChild(OptionIcon, {})
@@ -39,7 +41,16 @@ export const VideoJS = (props) => {
 
       player.autoplay(options.autoplay);
       player.src(options.sources);
+
+      if (Hls.isSupported()) {
+        hls.loadSource(link);
+        hls.attachMedia(videoRef.current);
+        
+      } else if (videoRef.current.canPlayType('application/vnd.apple.mpegurl')) {
+        videoRef.current.src = link;
+      }
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [link, videoRef]);
 
   
@@ -56,7 +67,8 @@ export const VideoJS = (props) => {
 
   return (
       <div data-vjs-player>
-        <div ref={videoRef} />
+        <video className='video-js vjs-big-play-centered' ref={videoRef}></video>
+        {/* <div ref={videoRef} /> */}
       </div>
   );
 }

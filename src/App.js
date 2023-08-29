@@ -10,8 +10,6 @@ import { themeContext } from './context/themeContext'
 const App = () => {
   const { primaryColor, secondaryColor, tertiaryColor } = useContext(themeContext)
 
-
-
   return (
       <>
         <StyleContext>

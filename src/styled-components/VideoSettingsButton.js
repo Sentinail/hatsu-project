@@ -6,4 +6,6 @@ export const VideoSettingsButton  = styled.button`
     border-radius: 5px;
     border: none;
     cursor: pointer;
+
+    background-color: ${props => {return props.$secondaryColor}};
 `
