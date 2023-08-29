@@ -1,8 +1,12 @@
-import React from 'react'
+import React, {useContext} from 'react'
+import { FooterContainer } from '../styled-components/FooterContainer'
+import { themeContext } from '../context/themeContext'
 
 const Footer = () => {
+  const { primaryColor } = useContext(themeContext)
+
   return (
-    <div>Footer</div>
+    <FooterContainer $primaryColor={primaryColor}></FooterContainer>
   )
 }
 

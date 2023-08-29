@@ -78,6 +78,4 @@ export const HeaderContainer = styled.div`
             display: none
         }
     }
-
-
 `
