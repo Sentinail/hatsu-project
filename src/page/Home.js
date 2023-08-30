@@ -4,6 +4,7 @@ import { themeContext } from '../context/themeContext'
 import HomeCarousel from '../components/HomePageCarousel'
 import VideoPlayer from '../components/VideoPlayer'
 import TestPlay from '../tests/testPlay'
+import TopAnimeSection from '../components/TopAnimeSection'
 
 const source = [
   {
@@ -48,7 +49,7 @@ const Home = () => {
       </section>
       <div className="divider" />
       <section className='content_container'>
-        <VideoPlayer sources={source} currentIndex={0}></VideoPlayer>
+        <TopAnimeSection></TopAnimeSection>
       </section>
     </HomeContainer>
   )

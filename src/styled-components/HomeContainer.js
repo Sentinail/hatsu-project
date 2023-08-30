@@ -29,6 +29,7 @@ export const HomeContainer = styled.div`
     }
 
     .content_container {
+        padding: 50px;
         width: 100%;
         min-height: 100vh;
         display: flex;
