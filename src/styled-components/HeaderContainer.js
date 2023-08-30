@@ -1,6 +1,9 @@
 import { styled } from "styled-components";
 
 export const HeaderContainer = styled.div`
+    position: sticky;
+    top: 0;
+    left: 0;
     width: 100%;
     height: 60px;
     background-color: ${props => {return props.$primaryColor}};
@@ -11,13 +14,13 @@ export const HeaderContainer = styled.div`
     padding-left: 30px;
     padding-right: 30px;
     box-shadow: 0px -1px 51px 32px rgba(0,0,0,0.75);
-    position: relative;
     z-index: 100;
 
     .header_item_left {
         position: relative;
         align-items: center;
         display: flex;
+        cursor: pointer;
         
         .logo {
             width: 70px;

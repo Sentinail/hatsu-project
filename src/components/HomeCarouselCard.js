@@ -2,10 +2,12 @@ import { HomeCarouselCardContainer } from '../styled-components/HomeCarouselCard
 import { getAnimeInfo } from '../utilities/GogoAnime';
 import React, { useState, useEffect, useContext } from 'react';
 import { themeContext } from '../context/themeContext';
+import { useNavigate } from "react-router-dom";
 
 const HomeCarouselCard = ({ id, title, image }) => {
     const [animeInfo, setAnimeInfo] = useState({});
     const { primaryColor, tertiaryColor } = useContext(themeContext);
+    const navigate = useNavigate()
 
     useEffect(() => {
         const getRelevantInfo = async () => {
@@ -41,6 +43,9 @@ const HomeCarouselCard = ({ id, title, image }) => {
         ? animeInfo.genres.join(" | ")
         : '';
 
+    const handleNavigate = () => {
+        navigate(`/watch/${id}`)
+    }
     return (
         <HomeCarouselCardContainer $primaryColor={primaryColor} $tertiaryColor={tertiaryColor}>
             {Object.keys(animeInfo).length > 0 && (
@@ -50,7 +55,7 @@ const HomeCarouselCard = ({ id, title, image }) => {
                         <h1> {truncatedTitle} </h1>
                         <p> {genreList} </p>
                         <p> {truncatedDescription} </p>
-                        <button className='watch_now_button' > Watch Now </button>
+                        <button className='watch_now_button' onClick={(handleNavigate)}> Watch Now </button>
                     </div>
                 </div>
             )}

@@ -3,20 +3,26 @@ import { HeaderContainer } from '../styled-components/HeaderContainer'
 import { themeContext } from '../context/themeContext'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons'
-import { searchAnime } from '../utilities/GogoAnime'
+import { useNavigate } from 'react-router-dom'
 import Burger from './Burger'
 import { MobileNavbarContainer } from '../styled-components/MobileNavbarContainer'
 const logo = require("../assets/icons/miku.png")
 const heartIcon = require("../assets/icons/heart-icon.png")
+
 
 const Header = () => {
     const { primaryColor, tertiaryColor } = useContext(themeContext)
     const [ navbarIsActive, setNavbarIsActive ] = useState(false)
     const [ search, setSearch ] = useState("")
     const [ searchResult, setSearchResult ] = useState([])
+    const navigate = useNavigate()
 
     const handleChange = (e) => {
         setSearch(e.target.value)
+    }
+
+    const handleLogoClick = () => {
+        navigate("/")
     }
 
     useEffect(() => {
@@ -40,7 +46,7 @@ const Header = () => {
 
     return (
         <HeaderContainer $haveSearchResult={searchResult.length > 0}  $primaryColor={primaryColor} $tertiaryColor={tertiaryColor}>
-            <div className="header_item_left">
+            <div className="header_item_left" onClick={handleLogoClick}>
                 <img className='logo' src={logo} alt="miku" />
                 <h1> Hatsu </h1>
                 <img className='heart' src={heartIcon} alt="heart" />

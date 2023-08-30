@@ -36,6 +36,10 @@ export const GridCardContainer = styled.div`
             gap: 20px;
             overflow: hidden;
 
+            &.always_open {
+                height: 100%;
+            }
+
             button {
                 height: 40px;
                 width: 150px;

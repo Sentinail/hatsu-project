@@ -1,7 +1,7 @@
 import React, {useContext, useEffect, useState} from 'react'
 import { themeContext } from '../context/themeContext'
 import { TopAnimeSectionContainer } from '../styled-components/TopAnimeSectionContainer'
-import { GridCardContainer } from '../styled-components/GridCardContainer'
+import AnimeCards from './AnimeCards'
 
 const result = {
     "currentPage": 1,
@@ -303,34 +303,6 @@ const result2 = {
     ]
 }
 
-const GridCard = ({ id, image, title, episodeNumber }) => {
-    const { primaryColor, secondaryColor, tertiaryColor } = useContext(themeContext)
-
-    let truncatedTitle = title || '';
-    if (truncatedTitle.length > 30) {
-        truncatedTitle = truncatedTitle.slice(0, 30) + '...';
-    }
-
-
-    return (
-        <>
-            <GridCardContainer $tertiaryColor={tertiaryColor} $secondaryColor={secondaryColor}>
-                <div className='image'>
-                    <img src={image} alt={id} />
-                    <div className="curtain">
-                        <button className='button'> Play Now </button>
-                        <button className='button'> Add To Bookmark </button>
-                    </div>
-                    { episodeNumber && <p className='episode'>Episode: {episodeNumber} </p> }
-                </div>
-                <p className='title'>
-                    {truncatedTitle}
-                </p>
-            </GridCardContainer>
-        </>
-    )
-}
-
 const TopAnimeSection = () => {
     const { primaryColor, secondaryColor, tertiaryColor } = useContext(themeContext)
     const [ animeList, setAnimeList ] = useState()
@@ -348,7 +320,7 @@ const TopAnimeSection = () => {
                 <div className='cards'>
                     { animeList && animeList.map((anime, index) => {
                         return (
-                            <GridCard episodeNumber={null} key={index} id={anime.id} image={anime.image} title={anime.title}></GridCard>
+                            <AnimeCards episodeNumber={null} key={index} id={anime.id} image={anime.image} title={anime.title}></AnimeCards>
                         )
                     })}
                     
@@ -359,7 +331,7 @@ const TopAnimeSection = () => {
                 <div className='cards'>
                     { recentAnimeList && recentAnimeList.map((anime, index) => {
                         return (
-                            <GridCard episodeNumber={anime.episodeNumber} key={index} id={anime.id} image={anime.image} title={anime.title}></GridCard>
+                            <AnimeCards episodeNumber={anime.episodeNumber} key={index} id={anime.id} image={anime.image} title={anime.title}></AnimeCards>
                         )
                     })}
                     

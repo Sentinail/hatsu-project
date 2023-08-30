@@ -6,8 +6,10 @@ const GlobalStyle = createGlobalStyle`
         padding: 0;
         margin: 0;
         font-family: "Poppins", sans-serif;
-        color: white
+        color: white;
     }
+
+    
 
     ::-webkit-scrollbar {
         width: 8px; 
