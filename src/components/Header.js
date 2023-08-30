@@ -44,6 +44,10 @@ const Header = () => {
         }
     }, [search]);
 
+    const handleSearch = () => {
+        navigate("/search")
+    }
+
     return (
         <HeaderContainer $haveSearchResult={searchResult.length > 0}  $primaryColor={primaryColor} $tertiaryColor={tertiaryColor}>
             <div className="header_item_left" onClick={handleLogoClick}>
@@ -53,12 +57,9 @@ const Header = () => {
             </div>
             <div className="header_item_right">
                 <div className="search_container">
-                    <div className="search_bar">
-                        <input value={search} type="text" name="" id="" placeholder='Search' onChange={handleChange} />
-                        <button >
-                            <FontAwesomeIcon icon={faMagnifyingGlass} style={{color: "#ffffff",}} />
-                        </button>
-                    </div>
+                    <button onClick={handleSearch}>
+                        <FontAwesomeIcon icon={faMagnifyingGlass} style={{color: "#ffffff",}} />
+                    </button>
                 </div>
                 <button className='sign_in_button'>Sign In</button>
             </div>

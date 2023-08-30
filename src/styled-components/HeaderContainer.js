@@ -50,33 +50,16 @@ export const HeaderContainer = styled.div`
         }
 
         .search_container {
-            position: relative;
-
-            .search_bar {
-                display: flex;
+            button {
+                width: 40px;
+                height: 40px;
+                border: none;
+                background-color: ${props => {return props.$tertiaryColor}};
+                cursor: pointer;
                 border-radius: 5px;
-                overflow: hidden;
-                position: relative;
-
-                input {
-                    height: 40px;
-                    border: none;
-                    color: #000000;
-                    width: 300px;
-                    outline: none;
-                    padding: 10px;
-                }
-
-                button {
-                    width: 40px;
-                    height: 40px;
-                    border: none;
-                    background-color: ${props => {return props.$tertiaryColor}};
-                    cursor: pointer;
-                }
             }
         }
-        
+    
         @media screen and (max-width: 800px) {
             display: none
         }
