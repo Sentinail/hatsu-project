@@ -5,67 +5,7 @@ import { Outlet, useParams } from 'react-router-dom'
 import { getAnimeInfo } from '../utilities/GogoAnime'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import EpisodeCard from './EpisodeCard'
-
-//info
-const result = {
-    "id": "gogoanimehd.io",
-    "title": "Hataraku Saibou!!",
-    "url": "https://gogoanimehd.io/category/hataraku-saibou",
-    "genres": [
-      "Comedy",
-      "Shounen"
-    ],
-    "totalEpisodes": 8,
-    "image": "https://gogocdn.net/cover/hataraku-saibou.png",
-    "releaseDate": "2021",
-    "description": "Second season of Hataraku Saibou.",
-    "subOrDub": "sub",
-    "type": "WINTER 2021 ANIME",
-    "status": "Completed",
-    "otherName": "Cells at Work! 2nd Season, はたらく細胞!!",
-    "episodes": [
-      {
-        "id": "hataraku-saibou-2-episode-1",
-        "number": 1,
-        "url": "https://gogoanimehd.io//hataraku-saibou-2-episode-1"
-      },
-      {
-        "id": "hataraku-saibou-2-episode-2",
-        "number": 2,
-        "url": "https://gogoanimehd.io//hataraku-saibou-2-episode-2"
-      },
-      {
-        "id": "hataraku-saibou-2-episode-3",
-        "number": 3,
-        "url": "https://gogoanimehd.io//hataraku-saibou-2-episode-3"
-      },
-      {
-        "id": "hataraku-saibou-2-episode-4",
-        "number": 4,
-        "url": "https://gogoanimehd.io//hataraku-saibou-2-episode-4"
-      },
-      {
-        "id": "hataraku-saibou-2-episode-5",
-        "number": 5,
-        "url": "https://gogoanimehd.io//hataraku-saibou-2-episode-5"
-      },
-      {
-        "id": "hataraku-saibou-2-episode-6",
-        "number": 6,
-        "url": "https://gogoanimehd.io//hataraku-saibou-2-episode-6"
-      },
-      {
-        "id": "hataraku-saibou-2-episode-7",
-        "number": 7,
-        "url": "https://gogoanimehd.io//hataraku-saibou-2-episode-7"
-      },
-      {
-        "id": "hataraku-saibou-2-episode-8",
-        "number": 8,
-        "url": "https://gogoanimehd.io//hataraku-saibou-2-episode-8"
-      }
-    ]
-  }
+import { Navigation } from 'swiper/modules'
 
 const WatchAnime = () => {
     const { primaryColor, secondaryColor, tertiaryColor } = useContext(themeContext)
@@ -92,6 +32,48 @@ const WatchAnime = () => {
             { animeInfo && 
             <>
                 <div className="anime_info">
+                  <div className="anime_watch">
+                    <Outlet></Outlet>
+                  </div>
+                  <div className="anime_episodes">
+                    <Swiper
+                        modules={[Navigation]}
+                        navigation
+                        pagination={{ clickable: true }}
+                        spaceBetween={20}
+                        loop={false}
+                        onSlideChange={() => console.log('slide change')}
+                        onSwiper={(swiper) => console.log(swiper)}
+                        breakpoints={{
+                          // When window width is >= 320px
+                          1: {
+                            slidesPerView: 1,
+                          },
+                          490: {
+                            slidesPerView: 2,
+                          },
+                          // When window width is >= 480px
+                          745: {
+                            slidesPerView: 3,
+                          },
+                          // When window width is >= 640px
+                          1000: {
+                            slidesPerView: 4,
+                          },
+                          // When window width is >= 768px
+                        }}
+                        >
+                        {
+                            animeInfo.episodes.map((episode, index) => {
+                                return (
+                                    <SwiperSlide key={index}>
+                                        <EpisodeCard id={episode.id} image={animeInfo.image} title={animeInfo.title} episodeNumber={episode.number}></EpisodeCard>
+                                    </SwiperSlide>
+                                )
+                            })
+                        }
+                    </Swiper>
+                  </div>
                   <div className="info_card">
                       <img src={animeInfo.image} alt={animeInfo.title} />
                       <div className="anime_information">
@@ -110,28 +92,6 @@ const WatchAnime = () => {
                               <p>Genres: {animeInfo.genres.join(" | ")} </p>
                           </div>
                       </div>
-                  </div>
-                  <div className="anime_watch">
-                    <Outlet></Outlet>
-                  </div>
-                  <div className="anime_episodes">
-                    <Swiper
-                        spaceBetween={20}
-                        slidesPerView={4}
-                        loop={false}
-                        onSlideChange={() => console.log('slide change')}
-                        onSwiper={(swiper) => console.log(swiper)}
-                        >
-                        {
-                            animeInfo.episodes.map((episode, index) => {
-                                return (
-                                    <SwiperSlide key={index}>
-                                        <EpisodeCard id={episode.id} image={animeInfo.image} title={animeInfo.title} episodeNumber={episode.number}></EpisodeCard>
-                                    </SwiperSlide>
-                                )
-                            })
-                        }
-                    </Swiper>
                   </div>
                 </div>
             </> 

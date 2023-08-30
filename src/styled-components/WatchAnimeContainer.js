@@ -18,10 +18,10 @@ export const WatchAnimeContainer  = styled.div`
             width: 100vw;
             min-height: 100px;
             max-width: 1000px;
-        }
 
-        img {
-            height: 400px;
+            img {
+                height: auto;
+            }
         }
 
         .info_card {
@@ -33,6 +33,11 @@ export const WatchAnimeContainer  = styled.div`
             gap: 20px;
             padding: 20px;
             align-items: center;
+
+            img {
+                width: 100%;
+                max-width: 400px;
+            }
 
             .anime_information {
                 display: flex;
@@ -50,6 +55,10 @@ export const WatchAnimeContainer  = styled.div`
                     flex-direction: column;
                     gap: 5px;
                 }
+            }
+
+            @media screen and (max-width: 1015px) {
+                flex-direction: column;
             }
         }
     }

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './App';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
@@ -7,11 +7,23 @@ import ThemeContext from './context/themeContext';
 import Watch from './page/Watch';
 import WatchAnime from './components/WatchAnime';
 import Stream from './components/Stream';
+import SwiperTest from './tests/SwiperTest';
+import { useLocation } from 'react-router-dom';
 
+const ScrollToTop = () => {
+  const location = useLocation();
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [location]);
+
+  return null;
+};
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <BrowserRouter>
+    <ScrollToTop />
     <Routes>
       <Route path='/' element={<ThemeContext><App></App></ThemeContext>}>
         <Route path='/' element={<Navigate to={"/home"}></Navigate>}></Route>
@@ -22,6 +34,7 @@ root.render(
             <Route path='/watch/:anime/:episode' element={<Stream></Stream>}></Route>
           </Route>
         </Route>
+        <Route path='/test' element={<SwiperTest></SwiperTest>}></Route>
       </Route>
     </Routes>
   </BrowserRouter>

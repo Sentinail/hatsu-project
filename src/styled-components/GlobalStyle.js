@@ -9,6 +9,9 @@ const GlobalStyle = createGlobalStyle`
         color: white;
     }
 
+    .swiper {
+        cursor: grab;
+    }
     
 
     ::-webkit-scrollbar {
