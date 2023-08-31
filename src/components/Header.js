@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState }  from 'react'
+import React, { useContext, useEffect, useState, useRef }  from 'react'
 import { HeaderContainer } from '../styled-components/HeaderContainer'
 import { themeContext } from '../context/themeContext'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -9,50 +9,41 @@ import { MobileNavbarContainer } from '../styled-components/MobileNavbarContaine
 const logo = require("../assets/icons/miku.png")
 const heartIcon = require("../assets/icons/heart-icon.png")
 
-
 const Header = () => {
-    const { primaryColor, tertiaryColor } = useContext(themeContext)
-    const [ navbarIsActive, setNavbarIsActive ] = useState(false)
+    const { primaryColor, tertiaryColor } = useContext(themeContext);
+    const [navbarIsActive, setNavbarIsActive] = useState(false);
     const [scrollingUp, setScrollingUp] = useState(true);
-    const [prevScrollPos, setPrevScrollPos] = useState(0);
+    const prevScrollPosRef = useRef(0);
+
+    const navigate = useNavigate();
+
+    const handleLogoClick = () => {
+        navigate("/");
+    };
+
+    const handleSearch = () => {
+        setNavbarIsActive(false);
+        navigate("/search");
+    };
 
     const handleScroll = () => {
         const currentScrollPos = window.scrollY;
-        
-        if ( currentScrollPos <= 80 ) {
-            setScrollingUp(true)
+
+        if (currentScrollPos <= 80) {
+            setScrollingUp(true);
         } else {
-            setScrollingUp(currentScrollPos < prevScrollPos);
-            setPrevScrollPos(currentScrollPos);
+            setScrollingUp(currentScrollPos < prevScrollPosRef.current);
+            prevScrollPosRef.current = currentScrollPos; 
         }
-        
     };
 
     useEffect(() => {
         window.addEventListener('scroll', handleScroll);
+
         return () => {
-        window.removeEventListener('scroll', handleScroll);
+            window.removeEventListener('scroll', handleScroll);
         };
-    }, [prevScrollPos]);
-
-    useEffect(() => {
-        window.addEventListener("wheel", handleScroll)
-
-        return () => {
-            window.removeEventListener('wheel', handleScroll);
-        }
-    }, [])
-
-    const navigate = useNavigate()
-
-    const handleLogoClick = () => {
-        navigate("/")
-    }
-
-    const handleSearch = () => {
-        setNavbarIsActive(false)
-        navigate("/search")
-    }
+    }, []);
 
     return (
         <HeaderContainer $scrollingUp={scrollingUp} $primaryColor={primaryColor} $tertiaryColor={tertiaryColor}>
