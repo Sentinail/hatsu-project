@@ -6,19 +6,23 @@ import { getAnimeInfo } from '../utilities/GogoAnime'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import EpisodeCard from './EpisodeCard'
 import { Navigation } from 'swiper/modules'
+const loadingMiku = require("../assets/icons/loading.gif")
 
 const WatchAnime = () => {
     const { primaryColor, secondaryColor, tertiaryColor } = useContext(themeContext)
     const [ animeInfo, setAnimeInfo ] = useState()
+    const [ loaded, setLoaded ] = useState(false)
     const { anime } = useParams();
     console.log(anime)
 
     useEffect(() => {
+        setLoaded(false)
         
         const getInfoAnime = async () => {
             try {
                 const result = await getAnimeInfo(anime)
                 setAnimeInfo(result)
+                setLoaded(true)
             } catch (err) {
                 console.log(err)
             }
@@ -29,8 +33,9 @@ const WatchAnime = () => {
 
     return (
         <WatchAnimeContainer $tertiaryColor={tertiaryColor}>
-            { animeInfo && 
             <>
+            { loaded ?
+            
                 <div className="anime_info">
                   <div className="anime_watch">
                     <Outlet></Outlet>
@@ -94,8 +99,14 @@ const WatchAnime = () => {
                       </div>
                   </div>
                 </div>
-            </> 
+
+                :
+
+                <div className='loading_container'>
+                    <img className='loading' src={loadingMiku} alt='Loading...'/>
+                </div>
             }
+        </>
         </WatchAnimeContainer>
     )
 }

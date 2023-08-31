@@ -2,6 +2,7 @@ import { styled } from "styled-components";
 
 export const HeaderContainer = styled.div`
     position: sticky;
+    opacity: ${props => {return props.$isScrollingDown ? 0 : 1}};
     top: 0;
     left: 0;
     width: 100%;
@@ -15,6 +16,7 @@ export const HeaderContainer = styled.div`
     padding-right: 30px;
     box-shadow: 0px -1px 51px 32px rgba(0,0,0,0.75);
     z-index: 100;
+    transition: opacity 0.3s ease-in-out;
 
     .header_item_left {
         position: relative;

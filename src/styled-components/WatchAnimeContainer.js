@@ -5,9 +5,22 @@ export const WatchAnimeContainer  = styled.div`
     height: 100%;
     display: flex;
     flex-direction: column;
+    justify-content: center;
     align-items: center;
     padding: 40px;
     gap: 20px;
+
+    .loading_container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        height: calc(100vh - 80px);
+
+        & .loading {
+            width: 80px;
+        }
+    }
     
     .anime_info {
         display: flex;

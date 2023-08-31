@@ -16,9 +16,30 @@ export const GridCardContainer = styled.div`
             background-color: ${props => {return props.$tertiaryColor}};
         }
 
+        .loading_container {
+            border: 1px solid ${props => {return props.$tertiaryColor}};
+            width: 100vh;
+            max-width: 200px;
+            aspect-ratio: 0.707739127357656;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            img.loading {
+                width: 80px;
+                height: auto;
+                aspect-ratio: none;
+                object-fit: contain;
+            }
+
+            @media screen and (max-width: 480px) {
+                 max-width: 150px;
+            }
+        }
+
+        
         img {
             width: 100%;
-            height: auto;
             aspect-ratio: 0.707739127357656;
             object-fit: cover;
         }

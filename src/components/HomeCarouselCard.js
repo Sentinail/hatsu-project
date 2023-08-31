@@ -27,7 +27,7 @@ const HomeCarouselCard = ({ id, title, image }) => {
             });
     }, []);
 
-    let truncatedDescription = animeInfo.description || ''; // Set default value if description is missing
+    let truncatedDescription = animeInfo.description || '';
 
     let truncatedTitle = title || '';
 

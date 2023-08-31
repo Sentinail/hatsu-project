@@ -8,8 +8,10 @@ export const SearchBarContainer = styled.div`
     align-items: center;
 
     .search_bar {
-        border-radius: 5px;
-        overflow: hidden;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
     }   
 
     input {
@@ -17,9 +19,9 @@ export const SearchBarContainer = styled.div`
         border: none;
         color: #000000;
         width: 100vw;
-        max-width: 300px;
         outline: none;
         padding: 10px;
+        max-width: 300px;
     }
 
     button {
@@ -28,5 +30,7 @@ export const SearchBarContainer = styled.div`
         border: none;
         background-color: ${props => {return props.$tertiaryColor}};
         cursor: pointer;
+        flex-shrink: 0;
+        flex-grow: 0;
     }
 `

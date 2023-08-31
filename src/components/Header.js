@@ -13,43 +13,41 @@ const heartIcon = require("../assets/icons/heart-icon.png")
 const Header = () => {
     const { primaryColor, tertiaryColor } = useContext(themeContext)
     const [ navbarIsActive, setNavbarIsActive ] = useState(false)
-    const [ search, setSearch ] = useState("")
-    const [ searchResult, setSearchResult ] = useState([])
-    const navigate = useNavigate()
+    const [ isScrollingDown, setIsScrollingDown ] = useState(false)
 
-    const handleChange = (e) => {
-        setSearch(e.target.value)
+    const handleScroll = (event) => {
+        if (window.scrollY > 80) {
+            if (event.deltaY > 0) {
+                setIsScrollingDown(true)
+            } else if (event.deltaY < 0) {
+                setIsScrollingDown(false)
+            }
+        } else if (window.scrollY <= 80) {
+            setIsScrollingDown(false)
+        }
     }
+
+    useEffect(() => {
+        window.addEventListener("wheel", handleScroll)
+
+        return () => {
+            window.removeEventListener('wheel', handleScroll);
+        }
+    }, [])
+
+    const navigate = useNavigate()
 
     const handleLogoClick = () => {
         navigate("/")
     }
 
-    useEffect(() => {
-        if (search.length > 0) {
-            let typingTimer;
-
-            const handleTimeout = async () => {
-                // const result = await searchAnime(search)
-                console.log("result")
-            };
-
-            clearTimeout(typingTimer);
-
-            typingTimer = setTimeout(handleTimeout, 1000);
-
-            return () => {
-                clearTimeout(typingTimer);
-            };
-        }
-    }, [search]);
-
     const handleSearch = () => {
+        setNavbarIsActive(false)
         navigate("/search")
     }
 
     return (
-        <HeaderContainer $haveSearchResult={searchResult.length > 0}  $primaryColor={primaryColor} $tertiaryColor={tertiaryColor}>
+        <HeaderContainer $isScrollingDown={isScrollingDown} $primaryColor={primaryColor} $tertiaryColor={tertiaryColor}>
             <div className="header_item_left" onClick={handleLogoClick}>
                 <img className='logo' src={logo} alt="miku" />
                 <h1> Hatsu </h1>
@@ -69,12 +67,7 @@ const Header = () => {
                     <button className='sign_in_button'>Sign In</button>
                 </div>
                 <div className='navbar_item'>
-                    <div className="search_bar">
-                        <input value={search} type="text" name="" id="" placeholder='Search' onChange={handleChange} />
-                        <button >
-                            <FontAwesomeIcon icon={faMagnifyingGlass} style={{color: "#ffffff",}} />
-                        </button>
-                    </div>
+                    <button onClick={handleSearch} className='search_button'>Search</button>
                 </div>
             </MobileNavbarContainer>
         </HeaderContainer>

@@ -5,16 +5,31 @@ export const HomeContainer = styled.div`
     width: 100%;    
     background-color: ${props => {return props.$secondaryColor}};
 
+    .loading {
+        width: 100px;
+    }
+
     .carousel_container {
+        position: relative;
+        &::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #000000;
+            opacity: 0.5;
+        }
+        display: flex;
+        align-items: center;
+        justify-content: center;
         width: 100%;
+        min-height: calc(80vh + 30px);
         overflow: hidden;
         padding: 30px;
         background-image: url(${wallpaper});
         background-repeat: no-repeat;
         background-size: cover;
-        background-color: #000000;
-        opacity: 0.8;
-        
 
         @media screen and (max-width: 430px){
             padding: 0;

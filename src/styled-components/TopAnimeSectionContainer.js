@@ -18,6 +18,7 @@ export const TopAnimeSectionContainer = styled.div`
     .cards {
         display: grid;
         grid-template-columns: repeat(5, 200px);
+        justify-content: center;
         justify-items: center;
         gap: 20px;
 

@@ -2,6 +2,10 @@ import { styled } from "styled-components";
 
 export const SearchResultsContainer = styled.div`
 
+    .loading {
+        width: 100px;
+    }
+
     .cards {
         display: grid;
         grid-template-columns: repeat(5, 200px);
