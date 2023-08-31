@@ -2,7 +2,7 @@ import { styled } from "styled-components";
 
 export const HeaderContainer = styled.div`
     position: sticky;
-    opacity: ${props => {return props.$isScrollingDown ? 0 : 1}};
+    opacity: ${props => {return props.$scrollingUp ? 1 : 0}};
     top: 0;
     left: 0;
     width: 100%;

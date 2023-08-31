@@ -13,19 +13,27 @@ const heartIcon = require("../assets/icons/heart-icon.png")
 const Header = () => {
     const { primaryColor, tertiaryColor } = useContext(themeContext)
     const [ navbarIsActive, setNavbarIsActive ] = useState(false)
-    const [ isScrollingDown, setIsScrollingDown ] = useState(false)
+    const [scrollingUp, setScrollingUp] = useState(true);
+    const [prevScrollPos, setPrevScrollPos] = useState(0);
 
-    const handleScroll = (event) => {
-        if (window.scrollY > 80) {
-            if (event.deltaY > 0) {
-                setIsScrollingDown(true)
-            } else if (event.deltaY < 0) {
-                setIsScrollingDown(false)
-            }
-        } else if (window.scrollY <= 80) {
-            setIsScrollingDown(false)
+    const handleScroll = () => {
+        const currentScrollPos = window.scrollY;
+        
+        if ( currentScrollPos <= 80 ) {
+            setScrollingUp(true)
+        } else {
+            setScrollingUp(currentScrollPos < prevScrollPos);
+            setPrevScrollPos(currentScrollPos);
         }
-    }
+        
+    };
+
+    useEffect(() => {
+        window.addEventListener('scroll', handleScroll);
+        return () => {
+        window.removeEventListener('scroll', handleScroll);
+        };
+    }, [prevScrollPos]);
 
     useEffect(() => {
         window.addEventListener("wheel", handleScroll)
@@ -47,7 +55,7 @@ const Header = () => {
     }
 
     return (
-        <HeaderContainer $isScrollingDown={isScrollingDown} $primaryColor={primaryColor} $tertiaryColor={tertiaryColor}>
+        <HeaderContainer $scrollingUp={scrollingUp} $primaryColor={primaryColor} $tertiaryColor={tertiaryColor}>
             <div className="header_item_left" onClick={handleLogoClick}>
                 <img className='logo' src={logo} alt="miku" />
                 <h1> Hatsu </h1>
