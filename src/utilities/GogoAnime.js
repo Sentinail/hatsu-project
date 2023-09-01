@@ -8,7 +8,7 @@ import axios from "axios";
  * @returns {object} list of animes
  */
 export const searchAnime = async (query, pageNum = 1) => {
-    const result = await axios.get(`https://api.consumet.org/anime/gogoanime/${query}`, {params: {page: pageNum}})
+    const result = await axios.get(`https://consumet-org-api.vercel.app/anime/gogoanime/${query}`, {params: {page: pageNum}})
     console.log(result.data)
     return result.data
 }
@@ -21,7 +21,7 @@ export const searchAnime = async (query, pageNum = 1) => {
  * @returns {object} list of recent eps
  */
 export const getRecentEpisodes = async (pageNum = 1, type = 1) => {
-    const result = await axios.get(`https://api.consumet.org/anime/gogoanime/recent-episodes`, {params: {page: pageNum, type: type}})
+    const result = await axios.get(`https://consumet-org-api.vercel.app/anime/gogoanime/recent-episodes`, {params: {page: pageNum, type: type}})
     console.log(result.data)
     return result.data
 }
@@ -33,7 +33,7 @@ export const getRecentEpisodes = async (pageNum = 1, type = 1) => {
  * @returns {object} list of recent eps
  */
 export const getTopAiringAnime = async (pageNum = 1) => {
-    const result = await axios.get(`https://api.consumet.org/anime/gogoanime/top-airing`, {params: {page: pageNum}})
+    const result = await axios.get(`https://consumet-org-api.vercel.app/anime/gogoanime/top-airing`, {params: {page: pageNum}})
     console.log(result.data)
     return result.data
 }
@@ -45,7 +45,7 @@ export const getTopAiringAnime = async (pageNum = 1) => {
  * @returns {object} list of recent eps
  */
 export const getAnimeInfo = async (id) => {
-    const result = await axios.get(`https://api.consumet.org/anime/gogoanime/info/${id}`)
+    const result = await axios.get(`https://consumet-org-api.vercel.app/anime/gogoanime/info/${id}`)
     console.log(result.data)
     return result.data
 }
@@ -56,11 +56,8 @@ export const getAnimeInfo = async (id) => {
  * @param {string} id - The GogoAnime ID of the anime; i.e. provided by searching for said anime and selecting the correct one.
  * @returns {object} list of recent eps
  */
-export const getAnimeEPStreamLinks = async (episodeId, server="gogocdn") => {
-    const result = await axios.get(`https://api.consumet.org/anime/gogoanime/watch/${episodeId}`, {params: {server: server}})
+export const getAnimeEPStreamLinks = async (episodeId, server="vidstreaming") => {
+    const result = await axios.get(`https://consumet-org-api.vercel.app/anime/gogoanime/watch/${episodeId}`, {params: {server: server}})
     console.log(result.data)
     return result.data
 }
-
-
-

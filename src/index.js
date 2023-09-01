@@ -7,10 +7,10 @@ import ThemeContext from './context/themeContext';
 import Watch from './page/Watch';
 import WatchAnime from './components/WatchAnime';
 import Stream from './components/Stream';
-import SwiperTest from './tests/SwiperTest';
 import { useLocation } from 'react-router-dom';
 import Search from './page/Search';
 import SearchResults from './components/SearchResults';
+import VideoReactTest from './tests/VideoReactTest';
 
 const ScrollToTop = () => {
   const location = useLocation();
@@ -39,7 +39,7 @@ root.render(
         <Route path='/search' element={<Search></Search>}>
           <Route path="/search/:query" element={<SearchResults />} />
         </Route>
-        <Route path='/test' element={<SwiperTest></SwiperTest>}></Route>
+        <Route path='/test' element={<VideoReactTest></VideoReactTest>}></Route>
       </Route>
     </Routes>
   </BrowserRouter>

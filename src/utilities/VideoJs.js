@@ -68,7 +68,6 @@ export const VideoJS = (props) => {
   return (
       <div data-vjs-player>
         <video className='video-js vjs-big-play-centered' ref={videoRef}></video>
-        {/* <div ref={videoRef} /> */}
       </div>
   );
 }

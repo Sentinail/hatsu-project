@@ -11,15 +11,19 @@ class Options extends videojs.getComponent('Button') {
         const icon = videojs.dom.createEl('img', {
             src: cogIcon,
         });
-
+            
         const container = videojs.dom.createEl("div", {
         });
         videojs.dom.addClass(container, "option_container");
 
         container.appendChild(icon);
-        container.addEventListener('click', () => {
+        container.addEventListener('touchstart', () => {
           this.trigger('options');
         });
+
+        container.addEventListener('click', () => {
+            this.trigger('options');
+          });
   
         this.el().appendChild(container);
     }
