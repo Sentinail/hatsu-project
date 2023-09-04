@@ -7,8 +7,8 @@ import axios from "axios";
  * @param {number=1} pageNum - the page of the anime you want to search
  * @returns {object} list of animes
  */
-export const searchAnime = async (query, pageNum = 1) => {
-    const result = await axios.get(`https://consumet-org-api.vercel.app/anime/gogoanime/${query}`, {params: {page: pageNum}})
+export const searchAnime = async (query, page = 1) => {
+    const result = await axios.get(`https://consumet-org-api.vercel.app/meta/anilist/${query}`, {params: {page: page}})
     console.log(result.data)
     return result.data
 }
@@ -20,8 +20,8 @@ export const searchAnime = async (query, pageNum = 1) => {
  * @param {number=1}  type - The type of anime to get, i.e. sub or dub. 1: Japanese Dub, English Sub; 2: English Dub, No Sub; 3: Chinese Dub, English Sub.
  * @returns {object} list of recent eps
  */
-export const getRecentEpisodes = async (pageNum = 1, type = 1) => {
-    const result = await axios.get(`https://consumet-org-api.vercel.app/anime/gogoanime/recent-episodes`, {params: {page: pageNum, type: type}})
+export const getRecentEpisodes = async (page = 1, perPage = 20, provider = "gogoanime") => {
+    const result = await axios.get(`https://consumet-org-api.vercel.app/meta/anilist/recent-episodes`, {params: {page: page, perPage: perPage, provider: provider}})
     console.log(result.data)
     return result.data
 }
@@ -32,8 +32,8 @@ export const getRecentEpisodes = async (pageNum = 1, type = 1) => {
  * @param {number=1} page - The page number of results to return.
  * @returns {object} list of recent eps
  */
-export const getTopAiringAnime = async (pageNum = 1) => {
-    const result = await axios.get(`https://consumet-org-api.vercel.app/anime/gogoanime/top-airing`, {params: {page: pageNum}})
+export const getTopAiringAnime = async (page = 1, perPage = 20) => {
+    const result = await axios.get(`https://consumet-org-api.vercel.app/meta/anilist/trending`, {params: {page: page, perPage: perPage}})
     console.log(result.data)
     return result.data
 }
@@ -44,8 +44,8 @@ export const getTopAiringAnime = async (pageNum = 1) => {
  * @param {string} id - The GogoAnime ID of the anime; i.e. provided by searching for said anime and selecting the correct one.
  * @returns {object} list of recent eps
  */
-export const getAnimeInfo = async (id) => {
-    const result = await axios.get(`https://consumet-org-api.vercel.app/anime/gogoanime/info/${id}`)
+export const getAnimeInfo = async (id, provider = "gogoanime") => {
+    const result = await axios.get(`https://consumet-org-api.vercel.app/meta/anilist/info/${id}`, {params: {provider: provider}})
     console.log(result.data)
     return result.data
 }
@@ -56,8 +56,8 @@ export const getAnimeInfo = async (id) => {
  * @param {string} id - The GogoAnime ID of the anime; i.e. provided by searching for said anime and selecting the correct one.
  * @returns {object} list of recent eps
  */
-export const getAnimeEPStreamLinks = async (episodeId, server="vidstreaming") => {
-    const result = await axios.get(`https://consumet-org-api.vercel.app/anime/gogoanime/watch/${episodeId}`, {params: {server: server}})
+export const getAnimeEPStreamLinks = async (episodeId) => {
+    const result = await axios.get(`https://consumet-org-api.vercel.app/meta/anilist/watch/${episodeId}`)
     console.log(result.data)
     return result.data
 }

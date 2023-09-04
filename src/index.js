@@ -11,6 +11,7 @@ import { useLocation } from 'react-router-dom';
 import Search from './page/Search';
 import SearchResults from './components/SearchResults';
 import VideoReactTest from './tests/VideoReactTest';
+import TestApp from './tests/TestApp';
 
 const ScrollToTop = () => {
   const location = useLocation();
@@ -39,8 +40,8 @@ root.render(
         <Route path='/search' element={<Search></Search>}>
           <Route path="/search/:query" element={<SearchResults />} />
         </Route>
-        <Route path='/test' element={<VideoReactTest></VideoReactTest>}></Route>
       </Route>
+      <Route path='/test' element={<ThemeContext><TestApp></TestApp></ThemeContext>}></Route>
     </Routes>
   </BrowserRouter>
 );

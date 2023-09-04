@@ -5,9 +5,25 @@ export const TopAnimeSectionContainer = styled.div`
     flex-direction: column;
     gap: 50px;
 
+    .loading_container {
+        width: 300px;
+        height: 300px;
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        .loading {
+            width: 100px;
+        }
+
+    }
+
     section {
         display: flex;
         flex-direction: column;
+        justify-content: center;
+        align-items: center;
         gap: 20px;
     }
     

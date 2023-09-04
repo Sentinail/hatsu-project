@@ -2,6 +2,15 @@ import { styled } from "styled-components";
 
 export const HomeCarouselCardContainer = styled.div`
     width: 100%;
+    min-height: calc(80vh + 30px);
+    position: relative;
+
+    .loading {
+        position: absolute;
+        top: 50%;
+        right: 50%;
+        transform: translate(50%, -50%);
+    }
 
     .container {
         width: 100%;

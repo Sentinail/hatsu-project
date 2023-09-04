@@ -3,6 +3,7 @@ import { getAnimeInfo } from '../utilities/GogoAnime';
 import React, { useState, useEffect, useContext } from 'react';
 import { themeContext } from '../context/themeContext';
 import { useNavigate } from "react-router-dom";
+const mikuLoading = require("../assets/icons/loading.gif")
 
 const HomeCarouselCard = ({ id, title, image }) => {
     const [animeInfo, setAnimeInfo] = useState({});
@@ -48,17 +49,23 @@ const HomeCarouselCard = ({ id, title, image }) => {
     }
     return (
         <HomeCarouselCardContainer $primaryColor={primaryColor} $tertiaryColor={tertiaryColor}>
-            {Object.keys(animeInfo).length > 0 && (
-                <div className="container">
-                    <img src={image} className="anime_banner" alt="anime_banner" />
-                    <div className="info">
-                        <h1> {truncatedTitle} </h1>
-                        <p> {genreList} </p>
-                        <p> {truncatedDescription} </p>
-                        <button className='watch_now_button' onClick={(handleNavigate)}> Watch Now </button>
+            {Object.keys(animeInfo).length > 0 ? 
+                <>
+                    <div className="container">
+                        <img src={image} className="anime_banner" alt="anime_banner" />
+                        <div className="info">
+                            <h1> {truncatedTitle} </h1>
+                            <p> {genreList} </p>
+                            <p> {truncatedDescription} </p>
+                            <button className='watch_now_button' onClick={(handleNavigate)}> Watch Now </button>
+                        </div>
                     </div>
-                </div>
-            )}
+                </>
+
+                :
+                
+                <img className='loading' src={mikuLoading} alt='Loading...'></img>
+            }
         </HomeCarouselCardContainer>
     );
 };
