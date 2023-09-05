@@ -1,6 +1,6 @@
 import { styled } from "styled-components";
 
-export const TopAnimeSectionContainer = styled.div`
+export const PopularAnimeSectionContainerV2 = styled.div`
     display: flex;
     flex-direction: column;
     gap: 50px;

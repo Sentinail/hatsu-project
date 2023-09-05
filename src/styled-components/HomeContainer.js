@@ -43,12 +43,14 @@ export const HomeContainer = styled.div`
         box-shadow: 0px -1px 51px 32px rgba(0,0,0,0.75);
     }
 
-    .content_container {
+    .content {
         padding: 50px;
         width: 100%;
         min-height: 100vh;
         display: flex;
+        flex-direction: column;
         justify-content: center;
         align-items: center;
+        gap: 60px;
     }
 `

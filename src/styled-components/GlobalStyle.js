@@ -9,11 +9,6 @@ const GlobalStyle = createGlobalStyle`
         color: white;
     }
 
-    .swiper {
-        cursor: grab;
-    }
-    
-
     ::-webkit-scrollbar {
         width: 8px; 
     }
@@ -31,6 +26,10 @@ const GlobalStyle = createGlobalStyle`
     
     ::-webkit-scrollbar-thumb:hover {
         background: ${props => {return props.$tertiaryColor}};
+    }
+
+    .swiper {
+        cursor: grab;
     }
 `
 

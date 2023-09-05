@@ -6,29 +6,25 @@ import { useNavigate } from "react-router-dom";
 const mikuLoading = require("../assets/icons/loading.gif")
 
 const HomeCarouselCard = ({ id, title, image }) => {
-    const [animeInfo, setAnimeInfo] = useState({});
+    const [ fetchResult, setFetchResult] = useState({});
     const { primaryColor, tertiaryColor } = useContext(themeContext);
     const navigate = useNavigate()
 
     useEffect(() => {
-        const getRelevantInfo = async () => {
-            const { genres, description } = await getAnimeInfo(id);
-            return {
-                genres,
-                description
-            };
-        };
+        const fetchAnimeInfo = async () => {
+            try {
+                const result = await getAnimeInfo(id)
+                setFetchResult(result)
+                console.log(result, "Carousel Card")
+            } catch (err) {
+                console.log(err)
+            }
+        }
 
-        getRelevantInfo()
-            .then(res => {
-                setAnimeInfo(res);
-            })
-            .catch(err => {
-                console.log(err);
-            });
+        fetchAnimeInfo()
     }, []);
 
-    let truncatedDescription = animeInfo.description || '';
+    let truncatedDescription = fetchResult.description || '';
 
     let truncatedTitle = title || '';
 
@@ -40,16 +36,17 @@ const HomeCarouselCard = ({ id, title, image }) => {
         truncatedTitle = truncatedTitle.slice(0, 50) + '...';
     }
 
-    const genreList = animeInfo.genres && animeInfo.genres.length > 0
-        ? animeInfo.genres.join(" | ")
+    const genreList = fetchResult.genres && fetchResult.genres.length > 0
+        ? fetchResult.genres.join(" | ")
         : '';
 
     const handleNavigate = () => {
         navigate(`/watch/${id}`)
     }
+
     return (
         <HomeCarouselCardContainer $primaryColor={primaryColor} $tertiaryColor={tertiaryColor}>
-            {Object.keys(animeInfo).length > 0 ? 
+            {Object.keys(fetchResult).length > 0 ? 
                 <>
                     <div className="container">
                         <img src={image} className="anime_banner" alt="anime_banner" />

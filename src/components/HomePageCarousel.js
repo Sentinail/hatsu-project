@@ -7,24 +7,23 @@ import { Navigation, Autoplay } from 'swiper/modules';
 const loadingMiku = require("../assets/icons/loading.gif")
 
 const HomeCarousel = () => {
-    const [topAiringAnime, setTopAiringAnime] = useState([]);
+    const [ fetchResult, setFetchResult] = useState([]);
     const [ loaded, setLoaded ] = useState(false)
 
     useEffect(() => {
         setLoaded(false)
-        const getTopAiringAnimes = async () => {
-            const result = await getTopAiringAnime();
-            return result.results;
-        };
-
-        getTopAiringAnimes()
-            .then((res) => {
-                setTopAiringAnime(res);
+        const fetchTopAiringAnimes = async () => {
+            try {
+                const result = await getTopAiringAnime();
+                setFetchResult(result)
                 setLoaded(true)
-            })
-            .catch((err) => {
-                console.log(err);
-            });
+
+            } catch (err) {
+                console.log(err)
+            }
+        }
+
+        fetchTopAiringAnimes()
     }, []);
     
     return (
@@ -44,13 +43,13 @@ const HomeCarousel = () => {
                     disableOnInteraction: false
                 }}
         >
-            {topAiringAnime.length > 0 &&
-                topAiringAnime.map((anime, index) => (
+            { fetchResult.results.length > 0 &&
+                fetchResult.results.map((anime, index) => (
                     <SwiperSlide key={index}>
                         <HomeCarouselCard
                             key={index}
                             id={anime.id}
-                            title={anime.title}
+                            title={anime.title.userPreferred}
                             image={anime.image}
                         ></HomeCarouselCard>
                     </SwiperSlide>
