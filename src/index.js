@@ -10,7 +10,6 @@ import Stream from './components/Stream';
 import { useLocation } from 'react-router-dom';
 import Search from './page/Search';
 import SearchResults from './components/SearchResults';
-import VideoReactTest from './tests/VideoReactTest';
 import TestApp from './tests/TestApp';
 
 const ScrollToTop = () => {
