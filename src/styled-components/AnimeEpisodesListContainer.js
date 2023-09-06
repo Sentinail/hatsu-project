@@ -1,11 +1,28 @@
 import { styled } from "styled-components";
 
 export const AnimeEpisodesListContainer = styled.div`
-    width: 100vw;
-    min-height: 100px;
-    max-width: 1000px;
-    border: 1px solid ${props => {return props.$tertiaryColor }};
-    display: flex;
+
+
+    .next_ep {
+        display: flex;
+        width: 100%;
+        background-color: ${props => {return props.$primaryColor}};
+        padding: 20px;
+    }
+
+    .episodes_container {
+        width: 100vw;
+        min-height: 100px;
+        max-width: 1000px;
+        display: flex;  
+        position: relative;
+        border: 1px solid ${props => {return props.$tertiaryColor }};
+        border-bottom: none;
+    }
+
+    .title {
+        width: 100%;
+    }
 
     .episode_lists {
         display: flex;
@@ -27,7 +44,7 @@ export const AnimeEpisodesListContainer = styled.div`
 
     .episode_pages {
         width: 30%;
-        padding: 10px;
+        padding: 20px;
         max-height: 50vh;
         overflow-y: scroll;
 

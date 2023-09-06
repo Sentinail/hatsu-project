@@ -13,6 +13,7 @@ const SearchResults = () => {
     useEffect(() => {
         const getAnime = async () => {
             const data = await searchAnime(query);
+            console.log(data)
             setResult(data);
             setLoaded(true);
         };
@@ -29,7 +30,7 @@ const SearchResults = () => {
                 <div className="cards">
                     { result.results &&
                         result.results.map((anime, index) => (
-                            <AnimeCards key={index} id={anime.id} image={anime.image} title={anime.title} episodeNumber={null}></AnimeCards>
+                            <AnimeCards key={index} id={anime.id} image={anime.image} title={anime.title.english} episodeNumber={null}></AnimeCards>
                         ))
                     }
                 </div>
