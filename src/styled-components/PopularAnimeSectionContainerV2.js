@@ -49,6 +49,7 @@ export const PopularAnimeSectionContainerV2 = styled.div`
         justify-content: space-between;
         width: 1080px;
         align-items: center;
+        max-width: 90vw;
 
         .section_navbar {
             display: flex;

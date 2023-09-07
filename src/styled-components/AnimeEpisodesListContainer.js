@@ -1,7 +1,7 @@
 import { styled } from "styled-components";
 
 export const AnimeEpisodesListContainer = styled.div`
-
+    width: 100%;
 
     .next_ep {
         display: flex;
@@ -11,13 +11,16 @@ export const AnimeEpisodesListContainer = styled.div`
     }
 
     .episodes_container {
-        width: 100vw;
+        width: 100%;
         min-height: 100px;
-        max-width: 1000px;
         display: flex;  
         position: relative;
         border: 1px solid ${props => {return props.$tertiaryColor }};
         border-bottom: none;
+
+        @media screen and (max-width: 530px) {
+            flex-direction: column;
+        }
     }
 
     .title {
@@ -33,6 +36,10 @@ export const AnimeEpisodesListContainer = styled.div`
         overflow-y: scroll;
         padding: 20px;
 
+        @media screen and (max-width: 530px) {
+            width: 100%;
+        }
+
         .anime_cell {
             display: flex;
             width: 100%;
@@ -47,6 +54,10 @@ export const AnimeEpisodesListContainer = styled.div`
         padding: 20px;
         max-height: 50vh;
         overflow-y: scroll;
+
+        @media screen and (max-width: 530px) {
+            width: 100%;
+        }
 
         .page_item {
             margin: 5px;
