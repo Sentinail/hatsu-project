@@ -37,6 +37,10 @@ const Header = () => {
         }
     };
 
+    const handleNavigate = () => {
+        navigate("/sign-in")
+    }
+
     useEffect(() => {
         window.addEventListener('scroll', handleScroll);
 
@@ -55,15 +59,15 @@ const Header = () => {
             <div className="header_item_right">
                 <div className="search_container">
                     <button onClick={handleSearch}>
-                        <FontAwesomeIcon icon={faMagnifyingGlass} style={{color: "#ffffff",}} />
+                        <FontAwesomeIcon icon={faMagnifyingGlass} style={{color: "#ffffff"}} />
                     </button>
                 </div>
-                <button className='sign_in_button'>Sign In</button>
+                <button onClick={handleNavigate} className='sign_in_button'>Sign In</button>
             </div>
             <Burger size={0.4} isActive={navbarIsActive} onClick={() => {setNavbarIsActive(prevNavbarIsActive => !prevNavbarIsActive)}}></Burger>
             <MobileNavbarContainer $tertiaryColor={tertiaryColor} $navbarIsActive={navbarIsActive} $primaryColor={primaryColor}>
                 <div className='navbar_item'>
-                    <button className='sign_in_button'>Sign In</button>
+                    <button onClick={handleNavigate} className='sign_in_button'>Sign In</button>
                 </div>
                 <div className='navbar_item'>
                     <button onClick={handleSearch} className='search_button'>Search</button>

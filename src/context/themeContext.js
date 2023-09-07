@@ -1,6 +1,10 @@
-import React, { createContext, useState } from 'react'
+import React, { createContext, useContext, useState } from 'react'
 
 export const themeContext = createContext()
+
+export const useThemeContext = () => {
+    return useContext(themeContext)
+}
 
 function ThemeContext({ children }) {
     const [ primaryColor, setPrimaryColor ] = useState("#2980b9")
