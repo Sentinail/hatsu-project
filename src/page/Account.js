@@ -3,16 +3,11 @@ import { useAuth } from '../context/authContext'
 import { AccountContainer } from '../styled-components/AccountContainer'
 import { themeContext } from '../context/themeContext'
 import { getUserBookmarks } from '../utilities/firestoreDB'
+import Bookmarks from '../components/Bookmarks'
 
 const Account = () => {
     const { user, logout } = useAuth()
     const { secondaryColor } = useContext(themeContext)
-    console.log(user, "Account Info")
-
-    const handleQuery = async () => {
-        const bookmarks = await getUserBookmarks("user_bookmarks", user.uid)
-        console.log(bookmarks)
-    }
 
     const handleLogout = () => {
         logout()
@@ -21,9 +16,8 @@ const Account = () => {
 
     return (
         <AccountContainer $secondaryColor={secondaryColor}>
-            { user &&  <h1> {user.email} </h1>}
+            <Bookmarks></Bookmarks>
             <button onClick={handleLogout}> Logout user </button>
-            <button onClick={handleQuery}> Query </button>
         </AccountContainer>
     )
 }
