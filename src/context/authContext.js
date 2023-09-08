@@ -61,7 +61,6 @@ const AuthProvider = ({ children }) => {
         if (user) {
             const getBookmarks = async () => {
               const userBookmarks = await getUserBookmarks("user_bookmarks", user.uid)
-              alert(JSON.stringify(userBookmarks))
               localStorage.setItem("user_bookmarks", JSON.stringify(userBookmarks))
             }
       

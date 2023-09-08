@@ -1,4 +1,4 @@
-import { getDocs, addDoc, collection, query, where } from "firebase/firestore";
+import { getDocs, addDoc, collection, query, where, deleteDoc, doc } from "firebase/firestore";
 import { db } from "../firebase-config/firebaseConfig";
 
 export const addDocument = async (collectionName, dataFields) => {
@@ -22,4 +22,14 @@ export const getUserBookmarks = async (collectionName, uid) => {
     });
 
     return bookmarks
+}
+
+export const removeUserBookmark = async (collectionName, anime_id, uid) => {
+  const q = query(collection(db, collectionName), where("uid", "==", uid), where("anime_id", "==", anime_id))
+  const querySnapshot = await getDocs(q)
+
+  querySnapshot.forEach((document) => {
+    const documentRef = doc(db, collectionName, document.id);
+    deleteDoc(documentRef);
+  })
 }

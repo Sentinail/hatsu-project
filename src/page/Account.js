@@ -2,11 +2,11 @@ import React, { useContext } from 'react'
 import { useAuth } from '../context/authContext'
 import { AccountContainer } from '../styled-components/AccountContainer'
 import { themeContext } from '../context/themeContext'
-import { getUserBookmarks } from '../utilities/firestoreDB'
 import Bookmarks from '../components/Bookmarks'
+import BlueButton from '../components/BlueButton'
 
 const Account = () => {
-    const { user, logout } = useAuth()
+    const { logout } = useAuth()
     const { secondaryColor } = useContext(themeContext)
 
     const handleLogout = () => {
@@ -16,8 +16,10 @@ const Account = () => {
 
     return (
         <AccountContainer $secondaryColor={secondaryColor}>
-            <Bookmarks></Bookmarks>
-            <button onClick={handleLogout}> Logout user </button>
+            <main>
+                <BlueButton className='logout_button' onClick={handleLogout}> Logout </BlueButton>
+                <Bookmarks></Bookmarks>
+            </main>
         </AccountContainer>
     )
 }

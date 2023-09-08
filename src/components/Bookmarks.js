@@ -6,6 +6,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTrash } from '@fortawesome/free-solid-svg-icons'
 import { themeContext } from '../context/themeContext'
 import { useNavigate } from 'react-router-dom'
+import { removeUserBookmark } from '../utilities/firestoreDB'
+const hatsuSticker = require("../assets/icons/hatsu_sticker.png")
 
 const Bookmarks = () => {
     const { user } = useAuth()
@@ -18,26 +20,37 @@ const Bookmarks = () => {
             const parsedBookmarks = JSON.parse(localStorage.getItem("user_bookmarks"))
             setBookmarks(parsedBookmarks)
         }
-    }, [])
+
+        console.log("user")
+    }, [user])
 
     const handleBookmark = (id) => {
         navigate(`/watch/${id}`)
     }
 
     const handleDeleteBookmark = (id) => {
-        console.log(`Delete ${id}`)
+        removeUserBookmark("user_bookmarks", id, user.uid)
+
+        const userBookmarks = JSON.parse(localStorage.getItem("user_bookmarks"))
+        const newUserBookmarks = userBookmarks.filter(bookmark => {
+            return bookmark.anime_id !== id
+        })
+
+        localStorage.setItem("user_bookmarks", JSON.stringify(newUserBookmarks))
+        setBookmarks(newUserBookmarks)
     }
 
     return (
         <BookmarksContainer $tertiaryColor={tertiaryColor}>
             <h1><span> Bookmarks : </span></h1>
+            <img className='sticker' src={hatsuSticker} alt="hatsu_sticker" />
             {
                 bookmarks &&
                 bookmarks.map((bookmark, index) => {
                     return (
-                        <div className="bookmark_cell_container">
-                            <BlueButton onClick={() => {handleBookmark(bookmark.anime_id)}} className='bookmark_cell' > { bookmark.anime_title } </BlueButton>
-                            <BlueButton onClick={() => {handleDeleteBookmark(bookmark.anime_id)}} className='remove'> <FontAwesomeIcon icon={faTrash}></FontAwesomeIcon></BlueButton>
+                        <div key={index} className="bookmark_cell_container">
+                            <BlueButton key={index + 10} onClick={() => {handleBookmark(bookmark.anime_id)}} className='bookmark_cell' > { bookmark.anime_title } </BlueButton>
+                            <BlueButton key={index + 100} onClick={() => {handleDeleteBookmark(bookmark.anime_id)}} className='remove'> <FontAwesomeIcon icon={faTrash}></FontAwesomeIcon></BlueButton>
                         </div>
                     )
                     
