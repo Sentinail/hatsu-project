@@ -36,8 +36,6 @@ const HomeCarousel = () => {
                 loop={true}
                 navigation={true}
                 pagination={{ clickable: true }}
-                onSlideChange={() => console.log('Slide changed')}
-                onSwiper={(swiper) => console.log(swiper)}
                 autoplay={{
                     delay: 3000,
                     disableOnInteraction: false

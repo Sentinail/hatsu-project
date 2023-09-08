@@ -1,10 +1,17 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { themeContext } from "../context/themeContext";
 import { GridCardContainer } from '../styled-components/GridCardContainer';
 import { useNavigate } from "react-router-dom";
+import BlueButton from "./BlueButton";
+import { useAuth } from "../context/authContext";
+import { addDocument } from "../utilities/firestoreDB";
 const loadingMiku = require("../assets/icons/loading.gif") 
 
 const AnimeCards = ({ id, image, title, episodeNumber }) => {
+    const [ isBookmarked, setIsBookmarked ] = useState(false)
+
+    const { user } = useAuth()
+
     const { secondaryColor, tertiaryColor } = useContext(themeContext);
     const [isImageLoaded, setIsImageLoaded] = useState(false);
     const navigate = useNavigate();
@@ -17,6 +24,37 @@ const AnimeCards = ({ id, image, title, episodeNumber }) => {
     const handleNavigate = () => {
         navigate(`/watch/${id}`);
     }
+
+    const handleBookmark = () => {
+        addDocument("user_bookmarks", {
+            anime_id: id,
+            anime_title: title,
+            uid: user.uid
+        })
+
+        const bookmarks = JSON.parse(localStorage.getItem("user_bookmarks"))
+        bookmarks.push({
+            anime_id: id,
+            anime_title: title,
+            uid: user.uid
+        })
+        localStorage.setItem("user_bookmarks", JSON.stringify(bookmarks))
+
+        setIsBookmarked(true)
+    }
+
+    useEffect(() => {
+        const bookmarks = JSON.parse(localStorage.getItem("user_bookmarks"))
+
+        if (bookmarks) {
+            for (let i = 0; i < bookmarks.length; i++) {
+                if (bookmarks[i].anime_id === id) {
+                    setIsBookmarked(true)
+                }
+            }
+        }
+        
+    }, [])
 
     return (
         <GridCardContainer $tertiaryColor={tertiaryColor} $secondaryColor={secondaryColor}>
@@ -31,8 +69,18 @@ const AnimeCards = ({ id, image, title, episodeNumber }) => {
                             style={{ display: isImageLoaded ? 'inline' : 'none' }}
                         />
                         <div className="curtain">
-                            <button className='button' onClick={handleNavigate}> Visit Anime </button>
-                            <button className='button'> Add To Bookmark </button>
+                            <BlueButton 
+                                className='button' 
+                                onClick={handleNavigate}>
+                                    Visit Anime 
+                            </BlueButton>
+
+                            <BlueButton
+                                isDisabled={ user && !isBookmarked ? false : true}
+                                onClick={handleBookmark}
+                                className='button'> 
+                                    Add To Bookmark 
+                            </BlueButton>
                         </div>
                         {episodeNumber && <p className='episode'>Episode: {episodeNumber} </p>}
                     </>

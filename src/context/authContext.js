@@ -1,6 +1,7 @@
 import React, { createContext, useContext, useEffect, useState } from 'react'
-import { createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndPassword } from "firebase/auth";
+import { createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndPassword, signOut } from "firebase/auth";
 import { auth } from '../firebase-config/firebaseConfig';
+import { getUserBookmarks } from '../utilities/firestoreDB';
 
 const authContext = createContext()
 
@@ -31,20 +32,42 @@ const AuthProvider = ({ children }) => {
             })
     }
 
+    const logout = () => {
+        signOut(auth)
+            .then(() => {
+                alert("Sign Out Complete")
+            })
+            .catch((error) => {
+                console.log(error)
+            })
+    }
+
     useEffect(() => {
         const unsubscribe = onAuthStateChanged(auth, (userInfo) => {
-            console.log(userInfo, "User Info")
             setUser(userInfo)
         })
 
         return unsubscribe
-    })
+    }, [])
 
     const value = {
         user,
         signIn,
-        signUp
+        signUp,
+        logout
     }
+
+    useEffect(() => {
+        if (user) {
+            const getBookmarks = async () => {
+              const userBookmarks = await getUserBookmarks("user_bookmarks", user.uid)
+              alert(JSON.stringify(userBookmarks))
+              localStorage.setItem("user_bookmarks", JSON.stringify(userBookmarks))
+            }
+      
+            getBookmarks()
+        }
+    }, [user])
 
     return (
         <authContext.Provider value={value}> {children} </authContext.Provider>

@@ -6,10 +6,13 @@ import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons'
 import { useNavigate } from 'react-router-dom'
 import Burger from './Burger'
 import { MobileNavbarContainer } from '../styled-components/MobileNavbarContainer'
+import { useAuth } from '../context/authContext'
+import BlueButton from './BlueButton'
 const logo = require("../assets/icons/miku.png")
 const heartIcon = require("../assets/icons/heart-icon.png")
 
 const Header = () => {
+    const { user } = useAuth()
     const { primaryColor, tertiaryColor } = useContext(themeContext);
     const [navbarIsActive, setNavbarIsActive] = useState(false);
     const [scrollingUp, setScrollingUp] = useState(true);
@@ -41,6 +44,10 @@ const Header = () => {
         navigate("/sign-in")
     }
 
+    const handleNavigateAccount = () => {
+        navigate("/account")
+    } 
+
     useEffect(() => {
         window.addEventListener('scroll', handleScroll);
 
@@ -62,12 +69,24 @@ const Header = () => {
                         <FontAwesomeIcon icon={faMagnifyingGlass} style={{color: "#ffffff"}} />
                     </button>
                 </div>
-                <button onClick={handleNavigate} className='sign_in_button'>Sign In</button>
+                { user ? 
+                    <BlueButton className={"sign_in_button"} onClick={handleNavigateAccount}> My Account </BlueButton>
+
+                    :
+
+                    <BlueButton onClick={handleNavigate} className='sign_in_button'>Sign In</BlueButton>
+                }
             </div>
             <Burger size={0.4} isActive={navbarIsActive} onClick={() => {setNavbarIsActive(prevNavbarIsActive => !prevNavbarIsActive)}}></Burger>
             <MobileNavbarContainer $tertiaryColor={tertiaryColor} $navbarIsActive={navbarIsActive} $primaryColor={primaryColor}>
                 <div className='navbar_item'>
-                    <button onClick={handleNavigate} className='sign_in_button'>Sign In</button>
+                    { user ? 
+                        <BlueButton className='sign_in_button' onClick={handleNavigateAccount}> My Account </BlueButton>
+
+                        :
+
+                        <BlueButton onClick={handleNavigate} className='sign_in_button'>Sign In</BlueButton>
+                    }
                 </div>
                 <div className='navbar_item'>
                     <button onClick={handleSearch} className='search_button'>Search</button>

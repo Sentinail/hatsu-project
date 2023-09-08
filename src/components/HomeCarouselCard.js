@@ -15,7 +15,6 @@ const HomeCarouselCard = ({ id, title, image }) => {
             try {
                 const result = await getAnimeInfo(id)
                 setFetchResult(result)
-                console.log(result, "Carousel Card")
             } catch (err) {
                 console.log(err)
             }

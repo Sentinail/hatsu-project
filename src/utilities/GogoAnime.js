@@ -9,7 +9,6 @@ import axios from "axios";
  */
 export const searchAnime = async (query, page = 1) => {
     const result = await axios.get(`https://consumet-org-api.vercel.app/meta/anilist/${query}`, {params: {page: page}})
-    console.log(result.data)
     return result.data
 }
 
@@ -22,7 +21,6 @@ export const searchAnime = async (query, page = 1) => {
  */
 export const getRecentEpisodes = async (page = 1, perPage = 10, provider = "gogoanime") => {
     const result = await axios.get(`https://consumet-org-api.vercel.app/meta/anilist/recent-episodes`, {params: {page: page, perPage: perPage, provider: provider}})
-    console.log(result.data)
     return result.data
 }
 
@@ -34,7 +32,6 @@ export const getRecentEpisodes = async (page = 1, perPage = 10, provider = "gogo
  */
 export const getPopularAnime = async (page = 1, perPage = 10) => {
     const result = await axios.get(`https://consumet-org-api.vercel.app/meta/anilist/popular`, {params: {page: page, perPage: perPage}})
-    console.log(result.data)
     return result.data
 }
 
@@ -46,7 +43,6 @@ export const getPopularAnime = async (page = 1, perPage = 10) => {
  */
 export const getTopAiringAnime = async (page = 1, perPage = 10) => {
     const result = await axios.get(`https://consumet-org-api.vercel.app/meta/anilist/trending`, {params: {page: page, perPage: perPage}})
-    console.log(result.data)
     return result.data
 }
 
@@ -58,7 +54,6 @@ export const getTopAiringAnime = async (page = 1, perPage = 10) => {
  */
 export const getAnimeInfo = async (id, provider = "gogoanime") => {
     const result = await axios.get(`https://consumet-org-api.vercel.app/meta/anilist/info/${id}`, {params: {provider: provider}})
-    console.log(result.data)
     return result.data
 }
 
@@ -70,6 +65,5 @@ export const getAnimeInfo = async (id, provider = "gogoanime") => {
  */
 export const getAnimeEPStreamLinks = async (episodeId) => {
     const result = await axios.get(`https://consumet-org-api.vercel.app/meta/anilist/watch/${episodeId}`)
-    console.log(result.data)
     return result.data
 }

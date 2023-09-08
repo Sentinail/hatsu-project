@@ -14,6 +14,7 @@ import TestApp from "./tests/TestApp";
 import AuthProvider from "./context/authContext";
 import SignIn from "./page/Sign-In";
 import SignUp from "./page/Sign-Up";
+import Account from "./page/Account";
 
 const ScrollToTop = () => {
 	const location = useLocation();
@@ -63,8 +64,9 @@ root.render(
 				<Route path="/search" element={<Search></Search>}>
 					<Route path="/search/:query" element={<SearchResults />} />
 				</Route>
-        <Route path="/sign-in" element={<SignIn></SignIn>}></Route>
-        <Route path="/sign-up" element={<SignUp></SignUp>}></Route>
+				<Route path="/sign-in" element={<SignIn></SignIn>}></Route>
+				<Route path="/sign-up" element={<SignUp></SignUp>}></Route>
+				<Route path="/account" element={<Account></Account>}></Route>
 			</Route>
 			<Route
 				path="/test"

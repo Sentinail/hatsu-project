@@ -10,6 +10,6 @@ export const BlueButtonContainer = styled.button`
 
     &:disabled {
         opacity: 0.5;
-        cursor: default;
+        cursor: default !important;
     }
 `   

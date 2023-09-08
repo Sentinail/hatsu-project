@@ -42,13 +42,10 @@ export const HeaderContainer = styled.div`
         display: flex;
         align-items: center;
         gap: 20px;
+
         .sign_in_button {
             height: 40px;
             width: 150px;
-            border: none;
-            border-radius: 5px;
-            background-color: ${props => {return props.$tertiaryColor}};
-            cursor: pointer;
         }
 
         .search_container {
