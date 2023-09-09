@@ -80,7 +80,7 @@ const AuthProvider = ({ children }) => {
         console.log(email)
         sendPasswordResetEmail(auth, email)
             .then(() => {
-                toast.success("Password reset email sent!")
+                toast.success("Check your email for further instructions!")
                 navigate("sign-in")
             })
 

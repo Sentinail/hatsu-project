@@ -35,7 +35,7 @@ const PasswordResetForm = () => {
 
         </div>
         <BlueButton className='sign_up_button'> Reset Password </BlueButton>
-        <Link to={"/sign-in"}> Want to sign-in instead? </Link>
+        <Link to={"/home"}> Go back? </Link>
       </PasswordResetFormContainer>
     )
   }

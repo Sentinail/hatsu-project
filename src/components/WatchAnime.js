@@ -171,6 +171,18 @@ const WatchAnime = () => {
 		}
 	}, [loaded]);
 
+	const findExistingTitle = () => {
+		if (fetchResult.title) {
+			if (fetchResult.title.english) {
+				return fetchResult.title.english
+			} else if (fetchResult.title.romaji) {
+				return fetchResult.title.romaji
+			} else {
+				return fetchResult.title.native
+			}
+		}
+	}
+
 	return (
 		<WatchAnimeContainer $tertiaryColor={tertiaryColor}>
 			<>
@@ -188,11 +200,11 @@ const WatchAnime = () => {
 						<div className="info_card">
 							<img
 								src={fetchResult.image}
-								alt={fetchResult.title.english}
+								alt={fetchResult.title.romaji}
 							/>
 							<div className="anime_information">
 								<div className="descriptions">
-									<h1> {fetchResult.title.english} </h1>
+									<h1> {findExistingTitle()} </h1>
 									<p ref={descriptionRef}></p>
 								</div>
 

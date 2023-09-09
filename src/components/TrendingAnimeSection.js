@@ -56,11 +56,11 @@ const TrendingAnimeSection = () => {
                 <div className="section_header">
                   <h1 className='section_title'> Trending Anime </h1>
                   <div className="section_navbar">
-                  <BlueButton isDisabled={!(fetchResult.currentPage > 1)} onClick={() => {handlePrevPage(fetchResult.currentPage)}}>
+                  <BlueButton isDisabled={!(fetchResult.currentPage > 1 ) || !isLoaded} onClick={() => {handlePrevPage(fetchResult.currentPage)}}>
                       <FontAwesomeIcon icon={faArrowLeft} size='xl' />
                   </BlueButton>
                   <p> {fetchResult.currentPage} </p>
-                  <BlueButton isDisabled={!(fetchResult.hasNextPage)} onClick={() => {handleNextPage(fetchResult.currentPage)}}>
+                  <BlueButton isDisabled={!(fetchResult.hasNextPage) || !isLoaded} onClick={() => {handleNextPage(fetchResult.currentPage)}}>
                       <FontAwesomeIcon icon={faArrowRight} size='xl' />
                   </BlueButton>
                   </div>

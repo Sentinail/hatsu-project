@@ -13,7 +13,7 @@ const SearchResults = () => {
     useEffect(() => {
         const getAnime = async () => {
             const data = await searchAnime(query);
-            console.log(data)
+            console.log(data, "Query")
             setResult(data);
             setLoaded(true);
         };
@@ -21,6 +21,20 @@ const SearchResults = () => {
         setLoaded(false)
         getAnime();
     }, [query]);
+
+    const findExistingTitle = (anime) => {
+		if (anime.title) {
+            if (anime.title.userPreferred) {
+                return anime.title.userPreferred
+            } else if (anime.title.english) {
+				return anime.title.english
+			} else if (anime.title.romaji) {
+				return anime.title.romaji
+			} else {
+				return anime.title.native
+			}
+		}
+	}
 
     return (
         <SearchResultsContainer>
@@ -30,7 +44,7 @@ const SearchResults = () => {
                 <div className="cards">
                     { result.results &&
                         result.results.map((anime, index) => (
-                            <AnimeCards key={index} id={anime.id} image={anime.image} title={anime.title.english} episodeNumber={null}></AnimeCards>
+                            <AnimeCards key={index} id={anime.id} image={anime.image} title={findExistingTitle(anime)} episodeNumber={null}></AnimeCards>
                         ))
                     }
                 </div>
