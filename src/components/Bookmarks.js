@@ -42,6 +42,7 @@ const Bookmarks = () => {
 
     return (
         <BookmarksContainer $tertiaryColor={tertiaryColor}>
+            <h1> Welcome { user && user.email } </h1>
             <h1><span> Bookmarks : </span></h1>
             <img className='sticker' src={hatsuSticker} alt="hatsu_sticker" />
             {

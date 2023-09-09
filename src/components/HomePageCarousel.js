@@ -7,7 +7,7 @@ import { Navigation, Autoplay } from 'swiper/modules';
 const loadingMiku = require("../assets/icons/loading.gif")
 
 const HomeCarousel = () => {
-    const [ fetchResult, setFetchResult] = useState([]);
+    const [ fetchResult, setFetchResult] = useState();
     const [ loaded, setLoaded ] = useState(false)
 
     useEffect(() => {
