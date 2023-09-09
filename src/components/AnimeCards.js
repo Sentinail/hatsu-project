@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import BlueButton from "./BlueButton";
 import { useAuth } from "../context/authContext";
 import { addDocument } from "../utilities/firestoreDB";
+import { toast } from 'react-toastify'
 const loadingMiku = require("../assets/icons/loading.gif") 
 
 const AnimeCards = ({ id, image, title, episodeNumber }) => {
@@ -26,21 +27,38 @@ const AnimeCards = ({ id, image, title, episodeNumber }) => {
     }
 
     const handleBookmark = () => {
-        addDocument("user_bookmarks", {
-            anime_id: id,
-            anime_title: title,
-            uid: user.uid
-        })
-
         const bookmarks = JSON.parse(localStorage.getItem("user_bookmarks"))
-        bookmarks.push({
-            anime_id: id,
-            anime_title: title,
-            uid: user.uid
-        })
-        localStorage.setItem("user_bookmarks", JSON.stringify(bookmarks))
+        let alreadyBookmarked = false
 
-        setIsBookmarked(true)
+        if (bookmarks) {
+            for (let i = 0; i < bookmarks.length; i++) {
+                if (bookmarks[i].anime_id === id) {
+                    alreadyBookmarked = true
+                }
+            }
+        }
+
+        if (!alreadyBookmarked) {
+            addDocument("user_bookmarks", {
+                anime_id: id,
+                anime_title: title,
+                uid: user.uid
+            })
+    
+            
+            bookmarks.push({
+                anime_id: id,
+                anime_title: title,
+                uid: user.uid
+            })
+            localStorage.setItem("user_bookmarks", JSON.stringify(bookmarks))
+    
+            setIsBookmarked(true)
+            toast(`Bookmark Added : ${title}`)
+        } else {
+            toast.error("Already Bookmarked!")
+            setIsBookmarked(true)
+        }
     }
 
     useEffect(() => {

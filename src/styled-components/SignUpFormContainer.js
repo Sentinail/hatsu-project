@@ -1,6 +1,7 @@
 import { styled } from "styled-components";
 
 export const SignUpFormContainer = styled.form`
+    position: relative;
     width: 100%;
     max-width: 350px;
     border: 1px solid ${props => {return props.$primaryColor}};
@@ -9,6 +10,12 @@ export const SignUpFormContainer = styled.form`
     flex-direction: column;
     gap: 40px;
     box-shadow: rgba(0, 0, 0, 0.75) 0px -1px 18px 1px;
+    animation: slide-in-fade 0.3s ease-in-out;
+
+    @keyframes slide-in-fade {
+        0% { top: -100px; opacity: 0};
+        100% { top: 0px; opacity: 1}
+    }
 
     a {
         text-align: center;

@@ -4,6 +4,7 @@ import { AccountContainer } from '../styled-components/AccountContainer'
 import { themeContext } from '../context/themeContext'
 import Bookmarks from '../components/Bookmarks'
 import BlueButton from '../components/BlueButton'
+import { toast } from 'react-toastify'
 
 const Account = () => {
     const { logout } = useAuth()

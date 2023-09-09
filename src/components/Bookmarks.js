@@ -7,6 +7,7 @@ import { faTrash } from '@fortawesome/free-solid-svg-icons'
 import { themeContext } from '../context/themeContext'
 import { useNavigate } from 'react-router-dom'
 import { removeUserBookmark } from '../utilities/firestoreDB'
+import { toast } from 'react-toastify'
 const hatsuSticker = require("../assets/icons/hatsu_sticker.png")
 
 const Bookmarks = () => {
@@ -28,7 +29,7 @@ const Bookmarks = () => {
         navigate(`/watch/${id}`)
     }
 
-    const handleDeleteBookmark = (id) => {
+    const handleDeleteBookmark = (id, anime_title) => {
         removeUserBookmark("user_bookmarks", id, user.uid)
 
         const userBookmarks = JSON.parse(localStorage.getItem("user_bookmarks"))
@@ -38,11 +39,13 @@ const Bookmarks = () => {
 
         localStorage.setItem("user_bookmarks", JSON.stringify(newUserBookmarks))
         setBookmarks(newUserBookmarks)
+
+        toast(`Removed Bookmark : ${anime_title}`)
     }
 
     return (
         <BookmarksContainer $tertiaryColor={tertiaryColor}>
-            <h1> Welcome { user && user.email } </h1>
+            <h1> Welcome ! </h1>
             <h1><span> Bookmarks : </span></h1>
             <img className='sticker' src={hatsuSticker} alt="hatsu_sticker" />
             {
@@ -51,7 +54,7 @@ const Bookmarks = () => {
                     return (
                         <div key={index} className="bookmark_cell_container">
                             <BlueButton key={index + 10} onClick={() => {handleBookmark(bookmark.anime_id)}} className='bookmark_cell' > { bookmark.anime_title } </BlueButton>
-                            <BlueButton key={index + 100} onClick={() => {handleDeleteBookmark(bookmark.anime_id)}} className='remove'> <FontAwesomeIcon icon={faTrash}></FontAwesomeIcon></BlueButton>
+                            <BlueButton key={index + 100} onClick={() => {handleDeleteBookmark(bookmark.anime_id, bookmark.anime_title)}} className='remove'> <FontAwesomeIcon icon={faTrash}></FontAwesomeIcon></BlueButton>
                         </div>
                     )
                     

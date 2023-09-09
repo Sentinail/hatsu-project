@@ -9,6 +9,13 @@ export const SignInFormContainer = styled.form`
     flex-direction: column;
     gap: 40px;
     box-shadow: rgba(0, 0, 0, 0.75) 0px -1px 18px 1px;
+    position: relative;
+    animation: slide-in-fade 0.3s ease-in-out;
+
+    @keyframes slide-in-fade {
+        0% { top: -100px; opacity: 0};
+        100% { top: 0px; opacity: 1}
+    }
 
     a {
         text-align: center;

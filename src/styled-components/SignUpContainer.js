@@ -1,6 +1,7 @@
 import { styled } from "styled-components";
 
 export const SignUpContainer = styled.div`
+    position: relative;
     width: 100%;
     height: calc(100vh - 60px);
     background-color: ${props => {return props.$secondaryColor}};

@@ -2,6 +2,7 @@ import React, { createContext, useContext, useEffect, useState } from 'react'
 import { createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndPassword, signOut } from "firebase/auth";
 import { auth } from '../firebase-config/firebaseConfig';
 import { getUserBookmarks } from '../utilities/firestoreDB';
+import { toast } from 'react-toastify';
 
 const authContext = createContext()
 
@@ -16,30 +17,51 @@ const AuthProvider = ({ children }) => {
     const signUp = (email, password) => {
         createUserWithEmailAndPassword(auth, email, password)
             .then((userCredential) => {
-                console.log(userCredential, "INFOOOOO")
+                toast.success("Registered!")
             })
             .catch((error) => {
-                alert(error.code)
+                switch(error.code) {
+                    case "auth/invalid-password":
+                        toast.error("Oops, make your password longer!")
+                        break;
+                    case "auth/invalid-email":
+                        toast.error("Oops, make your email valid!")
+                        break;
+                    default:
+                        toast.error("Something went wrong!")
+                }
             })
     }
 
     const signIn = (email, password) => {
         signInWithEmailAndPassword(auth, email, password)
             .then((userCredential) => {
-                console.log(userCredential, "INFOOOOO")
+                toast.success("Welcome user!")
             })
             .catch((error) => {
-                alert(error.code)
+                switch(error.code) {
+                    case "auth/wrong-password":
+                        toast.error("Oops, wrong password!")
+                        break;
+                    case "auth/user-not-found":
+                        toast.error("Oops, user not found!")
+                        break;
+                    default:
+                        toast.error("Something went wrong!")
+                }
             })
     }
 
     const logout = () => {
         signOut(auth)
             .then(() => {
-                alert("Sign Out Complete")
+                toast.success("Logout complete, see you again!")
             })
             .catch((error) => {
-                console.log(error)
+                switch(error.code) {
+                    default:
+                        toast.error("Something went wrong!")
+                }
             })
     }
 
