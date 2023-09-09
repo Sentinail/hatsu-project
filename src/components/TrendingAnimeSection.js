@@ -1,4 +1,4 @@
-import React, { useEffect, useState} from 'react'
+import React, { useContext, useEffect, useState} from 'react'
 import { TopAnimeSectionContainer } from '../styled-components/TopAnimeSectionContainer'
 import AnimeCards from './AnimeCards'
 import { getTopAiringAnime } from '../utilities/GogoAnime'
@@ -6,9 +6,11 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faArrowRight } from '@fortawesome/free-solid-svg-icons'
 import { faArrowLeft } from '@fortawesome/free-solid-svg-icons'
 import BlueButton from './BlueButton'
+import { themeContext } from '../context/themeContext'
 const mikuLoading = require("../assets/icons/loading.gif")
 
 const TrendingAnimeSection = () => {
+    const { secondaryColor, tertiaryColor } = useContext(themeContext)
     const [ fetchResult, setFetchResult ] = useState()
     const [ isLoaded, setIsLoaded ] = useState(false)
 
@@ -48,7 +50,7 @@ const TrendingAnimeSection = () => {
     }
 
     return (
-        <TopAnimeSectionContainer>
+        <TopAnimeSectionContainer $secondaryColor={secondaryColor} $tertiaryColor={tertiaryColor}>
             <section>
               { fetchResult &&
                 <div className="section_header">

@@ -8,6 +8,7 @@ import { themeContext } from '../context/themeContext'
 import { useNavigate } from 'react-router-dom'
 import { removeUserBookmark } from '../utilities/firestoreDB'
 import { toast } from 'react-toastify'
+import { auth } from '../firebase-config/firebaseConfig'
 const hatsuSticker = require("../assets/icons/hatsu_sticker.png")
 
 const Bookmarks = () => {
@@ -22,7 +23,7 @@ const Bookmarks = () => {
             setBookmarks(parsedBookmarks)
         }
 
-        console.log("user")
+        console.log(user)
     }, [user])
 
     const handleBookmark = (id) => {
@@ -45,7 +46,7 @@ const Bookmarks = () => {
 
     return (
         <BookmarksContainer $tertiaryColor={tertiaryColor}>
-            <h1> Welcome ! </h1>
+            <h1> Welcome {user && user.displayName} !</h1>
             <h1><span> Bookmarks : </span></h1>
             <img className='sticker' src={hatsuSticker} alt="hatsu_sticker" />
             {

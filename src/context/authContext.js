@@ -1,8 +1,9 @@
 import React, { createContext, useContext, useEffect, useState } from 'react'
-import { createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndPassword, signOut } from "firebase/auth";
+import { createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndPassword, signOut, updateProfile, sendPasswordResetEmail } from "firebase/auth";
 import { auth } from '../firebase-config/firebaseConfig';
 import { getUserBookmarks } from '../utilities/firestoreDB';
 import { toast } from 'react-toastify';
+import { useNavigate } from 'react-router-dom';
 
 const authContext = createContext()
 
@@ -13,11 +14,21 @@ export const useAuth = () => {
 const AuthProvider = ({ children }) => {
     const [ user, setUser ] = useState()
     const [ loading , setLoading ] = useState(true)
+    const navigate = useNavigate()
 
-    const signUp = (email, password) => {
+    const signUp = (email, password, displayName) => {
         createUserWithEmailAndPassword(auth, email, password)
             .then((userCredential) => {
-                toast.success("Registered!")
+                const user = userCredential.user
+                updateProfile(user, {
+                    displayName: displayName,
+                })
+                    .then(() => {
+                        toast.success("Registered!")
+                    })
+                    .catch((error) => {
+                        toast.error("Something went wrong!")
+                    })
             })
             .catch((error) => {
                 switch(error.code) {
@@ -36,7 +47,7 @@ const AuthProvider = ({ children }) => {
     const signIn = (email, password) => {
         signInWithEmailAndPassword(auth, email, password)
             .then((userCredential) => {
-                toast.success("Welcome user!")
+                toast.success(`Welcome ${userCredential.user.displayName} !`)
             })
             .catch((error) => {
                 switch(error.code) {
@@ -65,6 +76,20 @@ const AuthProvider = ({ children }) => {
             })
     }
 
+    const resetPassword = (email) => {
+        console.log(email)
+        sendPasswordResetEmail(auth, email)
+            .then(() => {
+                toast.success("Password reset email sent!")
+                navigate("sign-in")
+            })
+
+            .catch((error) => {
+                console.log(error)
+                toast.error("Something went wrong!")
+            })
+    }
+
     useEffect(() => {
         const unsubscribe = onAuthStateChanged(auth, (userInfo) => {
             setLoading(false)
@@ -78,7 +103,8 @@ const AuthProvider = ({ children }) => {
         user,
         signIn,
         signUp,
-        logout
+        logout,
+        resetPassword
     }
 
     useEffect(() => {

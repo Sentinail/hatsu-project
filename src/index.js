@@ -17,6 +17,7 @@ import SignUp from "./page/Sign-Up";
 import Account from "./page/Account";
 import PrivateRoute from "./components/PrivateRoute";
 import NegatedPrivateRoute from "./components/NegatedPrivateRoute";
+import PasswordReset from "./page/Password-Reset";
 
 const ScrollToTop = () => {
 	const location = useLocation();
@@ -68,6 +69,7 @@ root.render(
 				</Route>
 				<Route path="/sign-in" element={<NegatedPrivateRoute><SignIn /></NegatedPrivateRoute>}></Route>
 				<Route path="/sign-up" element={<NegatedPrivateRoute><SignUp /></NegatedPrivateRoute>}></Route>
+				<Route path="/password-reset" element={<PasswordReset />}></Route>
 				<Route path="/account" element={<PrivateRoute><Account /></PrivateRoute>} />
 			</Route>
 			<Route

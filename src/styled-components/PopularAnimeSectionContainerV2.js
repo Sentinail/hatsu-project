@@ -50,6 +50,10 @@ export const PopularAnimeSectionContainerV2 = styled.div`
         width: 1080px;
         align-items: center;
         max-width: 90vw;
+        border: 1px solid ${props => {return props.$tertiaryColor}};
+        padding: 20px;
+        border-radius: 10px;
+        background-color: ${props => {return props.$secondaryColor}}d0;
 
         .section_navbar {
             display: flex;

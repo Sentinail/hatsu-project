@@ -70,7 +70,7 @@ const Header = () => {
                     </button>
                 </div>
                 { user ? 
-                    <BlueButton className={"sign_in_button"} onClick={handleNavigateAccount}> My Account </BlueButton>
+                    <BlueButton className={"sign_in_button"} onClick={handleNavigateAccount}> {user && user.displayName} &#10084; </BlueButton>
 
                     :
 
@@ -81,7 +81,7 @@ const Header = () => {
             <MobileNavbarContainer $tertiaryColor={tertiaryColor} $navbarIsActive={navbarIsActive} $primaryColor={primaryColor}>
                 <div className='navbar_item'>
                     { user ? 
-                        <BlueButton className='sign_in_button' onClick={handleNavigateAccount}> My Account </BlueButton>
+                        <BlueButton className='sign_in_button' onClick={handleNavigateAccount}> {user && user.displayName} &#10084; </BlueButton>
 
                         :
 

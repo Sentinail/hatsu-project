@@ -1,9 +1,11 @@
 import styled from "styled-components";
 
 export const BlueButtonContainer = styled.button`
-    width: 40px;
+    min-width: 40px;
     height: 40px;
     border: none;
+    padding-left: 20px;
+    padding-right: 20px;
     background-color: ${props => {return props.$tertiaryColor}};
     cursor: pointer;
     border-radius: 5px;

@@ -42,6 +42,7 @@ const SignInForm = () => {
         </div>
         <BlueButton className='sign_up_button'> Sign In </BlueButton>
         <Link to={"/sign-up"}> Don't have an account? </Link>
+        <Link to={"/password-reset"}> Forgot password? </Link>
       </SignInFormContainer>
     )
   }

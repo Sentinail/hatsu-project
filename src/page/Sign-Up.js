@@ -20,7 +20,7 @@ const SignUpForm = () => {
     },
 
     onSubmit: values => {
-      signUp(values.email, values.password)
+      signUp(values.email, values.password, values.userName)
     },
 
     validationSchema: signUpSchema

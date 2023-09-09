@@ -45,7 +45,7 @@ export const HeaderContainer = styled.div`
 
         .sign_in_button {
             height: 40px;
-            width: 150px;
+            min-width: 150px;
         }
 
         .search_container {
