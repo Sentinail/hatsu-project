@@ -1,70 +1,38 @@
-# Getting Started with Create React App
+# Hatsu - Anime Streaming Web Application
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Hatsu is an anime streaming web application that offers a seamless anime-watching experience, free from annoying ads. With a vast library of high-quality anime content, Hatsu is the perfect platform for anime enthusiasts. This project owes its existence to the incredible API provided by consumet.org and its visionary creators.
 
-## Available Scripts
+## Setting Up Environment Variables
 
-In the project directory, you can run:
+Before you can dive into the world of anime on Hatsu, you'll need to configure some essential environment variables. These variables are necessary for the application to connect to Firebase, where the magic happens.
 
-### `npm start`
+Here's what you need to do:
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+1. **REACT_APP_FIREBASE_API_KEY:** Set this variable to your Firebase API Key.
+2. **REACT_APP_FIREBASE_AUTH_DOMAIN:** Set this variable to your Firebase Authentication Domain.
+3. **REACT_APP_FIREBASE_PROJECT_ID:** Specify your Firebase Project ID.
+4. **REACT_APP_FIREBASE_STORAGE_BUCKET:** Provide your Firebase Storage Bucket.
+5. **REACT_APP_FIREBASE_MESSAGING_SENDER_ID:** Set this variable to your Firebase Messaging Sender ID.
+6. **REACT_APP_FIREBASE_APP_ID:** Lastly, don't forget to specify your Firebase App ID.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+Now you're ready to go!
 
-### `npm test`
+## Cloning the Project
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+To get your hands on the Hatsu project and start enjoying ad-free anime streaming, follow these simple steps:
 
-### `npm run build`
+1. Open your terminal or command prompt.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+2. Run the following command to clone the Hatsu project repository:
+    git clone https://github.com/Sentinail/hatsu-project.git
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+3. Change your working directory to the newly cloned project folder:
+    cd hatsu-project
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+4. Install the project dependencies using npm:
+    npm i
 
-### `npm run eject`
+5. Start your local instance of the project:
+    npm start
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Now, you're all set to launch Hatsu and embark on an anime adventure like never before! Enjoy your anime streaming experience on Hatsu, and thank you to consumet.org for making it all possible.
