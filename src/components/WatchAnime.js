@@ -142,7 +142,7 @@ const AnimeEpisodeList = ({ episodes, nextAiringTime }) => {
 };
 
 const WatchAnime = () => {
-	const { primaryColor, secondaryColor, tertiaryColor } =
+	const { tertiaryColor } =
 		useContext(themeContext);
 	const [fetchResult, setFetchResult] = useState();
 	const [loaded, setLoaded] = useState(false);
