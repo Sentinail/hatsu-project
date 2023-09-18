@@ -9,6 +9,35 @@ export const HomeContainer = styled.div`
         width: 100px;
     }
 
+    .section {
+        display: flex;
+        justify-content: space-between;
+        padding: 30px;
+        gap: 30px;
+        position: relative;
+        .support_me {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+        }
+
+        .content {
+            width: 100%;
+            max-width: 1080px;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 60px;
+        }
+
+        @media screen and (max-width: 1650px){
+           flex-direction: column;
+           align-items: center;
+        }
+    }
+
     .carousel_container {
         position: relative;
         &::before {
@@ -41,16 +70,5 @@ export const HomeContainer = styled.div`
         height: 50px;
         background-color: ${props => {return props.$primaryColor}};
         box-shadow: 0px -1px 51px 32px rgba(0,0,0,0.75);
-    }
-
-    .content {
-        padding: 50px;
-        width: 100%;
-        min-height: 100vh;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        gap: 60px;
     }
 `

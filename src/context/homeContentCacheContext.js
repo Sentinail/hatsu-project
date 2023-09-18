@@ -12,6 +12,7 @@ const HomeContentCacheProvider = ({ children }) => {
     const [ recentAnimeEPCache,  setRecentAnimeEPCache] = useState()
     const [ homeCarouselCache, setHomeCarouselCache ] = useState()
     const [ homeCarouselCardsCache, setHomeCarouselCardsCache ] = useState([])
+    const [ airingScheduleCache, setAiringScheduleCache ] = useState()
 
     const value = {
         popularAnimeCache,
@@ -23,7 +24,9 @@ const HomeContentCacheProvider = ({ children }) => {
         recentAnimeEPCache,
         setRecentAnimeEPCache,
         homeCarouselCardsCache,
-        setHomeCarouselCardsCache
+        setHomeCarouselCardsCache,
+        airingScheduleCache,
+        setAiringScheduleCache,
     }
 
     return (

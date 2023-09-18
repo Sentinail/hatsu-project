@@ -79,7 +79,7 @@ const AnimeCards = ({ id, image, title, episodeNumber }) => {
             <div className='image'>
                 {image && (
                     <>
-                        { !isImageLoaded && <div className="loading_container"><img className="loading" src={loadingMiku} alt="Loading..."></img></div>}
+                        { !isImageLoaded && <div className="anime_cards_loading_container"><img className="loading" src={loadingMiku} alt="Loading..."></img></div>}
                         <img
                             src={image}
                             alt={id}

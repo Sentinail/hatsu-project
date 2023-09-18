@@ -5,7 +5,6 @@ export const GridCardContainer = styled.div`
     .image {
         position: relative;
         width: 100%;
-        height: auto;
         aspect-ratio: 0.707739127357656;
 
         .episode {
@@ -16,7 +15,7 @@ export const GridCardContainer = styled.div`
             background-color: ${props => {return props.$tertiaryColor}};
         }
 
-        .loading_container {
+        .anime_cards_loading_container {
             border: 1px solid ${props => {return props.$tertiaryColor}};
             width: 100vh;
             max-width: 200px;

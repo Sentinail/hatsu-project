@@ -16,7 +16,6 @@ const PopularAnimeSectionVer2 = () => {
     const [ isLoaded, setIsLoaded ] = useState(false)
 
     useEffect(() => {
-      console.log(fetchResult)
 
       const getTopAnimeList = async () => {
 

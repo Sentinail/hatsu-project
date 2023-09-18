@@ -68,3 +68,12 @@ export const getAnimeEPStreamLinks = async (episodeId) => {
     const result = await axios.get(`https://consumet-org-api.vercel.app/meta/anilist/watch/${episodeId}`)
     return result.data
 }
+
+export const getAiringAnimeSchedule = async (page = 1, perPage = 10, weekStart = "today's date", weekEnd = "today's date + 7 days", notYetAired = false) => {
+    const result = await axios.get(`https://consumet-org-api.vercel.app/meta/anilist/airing-schedule`, {
+        params: {   
+            perPage,
+        }
+    })
+    return result.data
+}
