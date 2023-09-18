@@ -1,16 +1,20 @@
   import React from 'react'
   import { FooterContainer } from '../styled-components/FooterContainer'
   import BlueButton from './BlueButton'
+import { themeContext, useThemeContext } from '../context/themeContext'
   const logo = require("../assets/icons/miku.png")
   const heartIcon = require("../assets/icons/heart-icon.png")
 
   const Footer = () => {
+    const { primaryColor, secondaryColor } = useThemeContext(themeContext)
 
     return (
-      <FooterContainer $primaryColor={"#0D111A"}> 
+      <FooterContainer $primaryColor={primaryColor} $secondaryColor={secondaryColor}> 
         <div className="wrapper_top">
-          <p> Copyright © hatsu.vercel.app. All Rights Reserved </p>
-          <BlueButton className='coffee_button'> <a href="https://www.buymeacoffee.com/Sentinail"> Buy Me A Coffee ☕ </a> </BlueButton>
+          <p className='copyright_quote'> Copyright © hatsu.vercel.app. All Rights Reserved </p>
+          <div className="coffee_button_wrapper">
+            <BlueButton className='coffee_button'> <a href="https://www.buymeacoffee.com/Sentinail"> Buy Me A Coffee ☕ </a> </BlueButton>
+          </div>
         </div>
         <div className="wrapper_bottom">
           <div className="header_item_left">

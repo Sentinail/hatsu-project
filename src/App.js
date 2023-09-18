@@ -25,7 +25,6 @@ const App = () => {
 
             </Outlet>
           </main>
-          <Footer></Footer>
         </StyleContext>
       </>
   )

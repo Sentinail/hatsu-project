@@ -133,8 +133,12 @@ const AnimeEpisodeList = ({ episodes, nextAiringTime }) => {
 				</>
 			)}
 			<div className="next_ep">
-                { nextAiringTime &&
+                { nextAiringTime ?
                     <p> Next Episode On : ({formatTime(currentCount)}) </p>
+
+					:
+
+					<p> Status : Completed </p>
                 }
 			</div>
 		</AnimeEpisodesListContainer>

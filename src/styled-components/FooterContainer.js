@@ -9,26 +9,37 @@ export const FooterContainer = styled.div`
     gap: 60px;
     text-align: center;
 
-    .coffee_button {
-        padding: 10px;
-
-        a {
-            width: 100%;
-            height: 100%;
-            text-decoration: none;
-        }
-    }
-
     .wrapper_top {
         display: flex;
         justify-content: space-between;
         align-items: center;
-        padding: 20px;
-        border-radius: 10px;
+        
+        .copyright_quote {
+            padding: 20px;
+            border-radius: 10px;
+            background-color: ${props => {return props.$secondaryColor}};
+        }
+
+        .coffee_button_wrapper {
+            display: flex;
+            align-items: center;
+            border-radius: 10px;
+            gap: 20px;
+        }
+
+        .coffee_button {
+            padding: 10px;
+
+            a {
+                width: 100%;
+                height: 100%;
+                text-decoration: none;
+            }
+        }
 
         @media screen and (max-width: 650px) {
             flex-direction: column;
-            gap: 20px;
+            gap: 60px;
         }
     }
 
@@ -38,6 +49,9 @@ export const FooterContainer = styled.div`
         flex-direction: column;
         align-items: center;
         gap: 20px;
+        background-color: ${props => {return props.$secondaryColor}};
+        border-radius: 10px;
+        padding: 20px;
     }
 
     .header_item_left {

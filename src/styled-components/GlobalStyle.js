@@ -10,7 +10,11 @@ const GlobalStyle = createGlobalStyle`
     }
 
     span {
-        color: ${props => {return props.$primaryColor}};
+        color: ${props => {return props.$tertiaryColor}};
+    }
+
+    .error {
+        color: ${props => {return props.$tertiaryColor}} !important;
     }
 
     ::-webkit-scrollbar {
@@ -24,7 +28,7 @@ const GlobalStyle = createGlobalStyle`
 
     
     ::-webkit-scrollbar-thumb {
-        background: ${props => {return props.$primaryColor}};
+        background: ${props => {return props.$tertiaryColor}};
     }
 
     

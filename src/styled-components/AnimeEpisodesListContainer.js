@@ -6,7 +6,7 @@ export const AnimeEpisodesListContainer = styled.div`
     .next_ep {
         display: flex;
         width: 100%;
-        background-color: ${props => {return props.$primaryColor}};
+        border: 1px solid ${props => {return props.$tertiaryColor }};
         padding: 20px;
     }
 
@@ -16,6 +16,7 @@ export const AnimeEpisodesListContainer = styled.div`
         display: flex;  
         position: relative;
         border: 1px solid ${props => {return props.$tertiaryColor }};
+        padding-bottom: 20px;
         border-bottom: none;
 
         @media screen and (max-width: 530px) {

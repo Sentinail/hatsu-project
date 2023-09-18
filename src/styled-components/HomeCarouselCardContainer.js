@@ -19,7 +19,7 @@ export const HomeCarouselCardContainer = styled.div`
         justify-content: space-evenly;
         align-items: center;
         padding: 30px;
-        border: 1px solid ${props => {return props.$tertiaryColor}};
+        /* border: 1px solid ${props => {return props.$tertiaryColor}}; */
         gap: 30px;
         position: relative;
 

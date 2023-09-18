@@ -11,12 +11,14 @@ export const HomeContainer = styled.div`
 
     .section {
         display: flex;
-        justify-content: space-between;
+        justify-content: space-around;
+        box-shadow: 0px -10px 21px -2px rgba(0,0,0,1);
         padding: 30px;
         gap: 30px;
         position: relative;
         .support_me {
             width: 100%;
+            max-width: 1080px;
             display: flex;
             justify-content: center;
         }
@@ -24,10 +26,8 @@ export const HomeContainer = styled.div`
         .content {
             width: 100%;
             max-width: 1080px;
-            min-height: 100vh;
             display: flex;
             flex-direction: column;
-            justify-content: center;
             align-items: center;
             gap: 60px;
         }

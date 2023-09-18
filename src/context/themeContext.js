@@ -7,7 +7,9 @@ export const useThemeContext = () => {
 }
 
 function ThemeContext({ children }) {
-    const [ primaryColor, setPrimaryColor ] = useState("#2980b9")
+    // const [ primaryColor, setPrimaryColor ] = useState("#2980b9")
+    const [ primaryColor, setPrimaryColor ] = useState("#1E2438")
+    // const [ primaryColor, setPrimaryColor ] = useState("#0D111A")
     const [ secondaryColor, setSecondaryColor ] = useState("#121523")
     const [ tertiaryColor, setTertiaryColor ] = useState("#24B9D1")
 

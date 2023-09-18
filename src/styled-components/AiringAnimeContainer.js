@@ -2,7 +2,7 @@ import { styled } from "styled-components";
 
 export const AiringAnimeContainer = styled.div`
     width: 100%;
-    max-width: 750px;
+    max-width: 1080px;
     max-height: 2400px;
 
     .loading_container {
