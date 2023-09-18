@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext } from 'react'
 import { HomeContainer } from '../styled-components/HomeContainer'
 import { themeContext } from '../context/themeContext'
 import HomeCarousel from '../components/HomePageCarousel'

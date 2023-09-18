@@ -4,26 +4,32 @@ import { useEffect, useState } from 'react';
 import { getTopAiringAnime } from '../utilities/GogoAnime';
 import HomeCarouselCard from './HomeCarouselCard';
 import { Navigation, Autoplay } from 'swiper/modules';
+import { useHomeContentCache } from '../context/homeContentCacheContext';
 const loadingMiku = require("../assets/icons/loading.gif")
 
 const HomeCarousel = () => {
-    const [ fetchResult, setFetchResult] = useState();
+    const { homeCarouselCache: fetchResult, setHomeCarouselCache: setFetchResult } = useHomeContentCache()
     const [ loaded, setLoaded ] = useState(false)
 
     useEffect(() => {
-        setLoaded(false)
         const fetchTopAiringAnimes = async () => {
             try {
                 const result = await getTopAiringAnime();
                 setFetchResult(result)
+                console.log("fetch")
                 setLoaded(true)
 
             } catch (err) {
                 console.log(err)
             }
         }
-
-        fetchTopAiringAnimes()
+        
+        if (fetchResult === undefined) {
+            setLoaded(false)
+            fetchTopAiringAnimes()
+        } else {
+            setLoaded(true)
+          }
     }, []);
     
     return (
@@ -54,7 +60,7 @@ const HomeCarousel = () => {
                 ))}
         </Swiper>
             :
-            <>
+            <>  
                 <img className='loading' src={loadingMiku} alt='Loading...' />
             </>
         }

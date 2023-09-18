@@ -7,16 +7,16 @@ import { faArrowLeft } from '@fortawesome/free-solid-svg-icons'
 import BlueButton from './BlueButton'
 import { RecentAnimeSectionContainer } from '../styled-components/RecentAnimeSectionContainer'
 import { themeContext } from '../context/themeContext'
+import { useHomeContentCache } from '../context/homeContentCacheContext'
 const mikuLoading = require("../assets/icons/loading.gif")
 
 const RecentAnimeSection = () => {
     const { secondaryColor, tertiaryColor } = useContext(themeContext)
-    const [ fetchResult, setFetchResult ] = useState()
+    const { recentAnimeEPCache: fetchResult, setRecentAnimeEPCache: setFetchResult} = useHomeContentCache()
     const [ isLoaded, setIsLoaded ] = useState(false)
 
     useEffect(() => {
-
-          const getTopAnimeList = async () => {
+          const getAnimeList = async () => {
 
             try {
               const result = await getRecentEpisodes()
@@ -24,11 +24,16 @@ const RecentAnimeSection = () => {
               setIsLoaded(true)
             } catch (err) {
               console.log(err)
+              setIsLoaded(true)
             }
             
           }
           
-          getTopAnimeList()
+          if (fetchResult === undefined) {
+            getAnimeList()
+          } else {
+            setIsLoaded(true)
+          }
     }, [])
 
     const handleNextPage = async (currentPage) => {

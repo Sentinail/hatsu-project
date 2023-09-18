@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React, { useContext, useState } from 'react'
 import { SearchContainer } from '../styled-components/SearchContainer'
 import { themeContext } from '../context/themeContext'
 import SearchBar from '../components/SearchBar'

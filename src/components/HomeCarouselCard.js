@@ -3,27 +3,45 @@ import { getAnimeInfo } from '../utilities/GogoAnime';
 import React, { useState, useEffect, useContext } from 'react';
 import { themeContext } from '../context/themeContext';
 import { useNavigate } from "react-router-dom";
+import { useHomeContentCache } from '../context/homeContentCacheContext';
 const mikuLoading = require("../assets/icons/loading.gif")
 
 const HomeCarouselCard = ({ id, title, image }) => {
-    const [ fetchResult, setFetchResult] = useState({});
+    const { homeCarouselCardsCache, setHomeCarouselCardsCache} = useHomeContentCache()
+    const [ fetchResult, setFetchResult ] = useState()
     const { primaryColor, tertiaryColor } = useContext(themeContext);
+    const [ isLoaded, setIsLoaded ] = useState(false)
     const navigate = useNavigate()
 
     useEffect(() => {
         const fetchAnimeInfo = async () => {
             try {
                 const result = await getAnimeInfo(id)
+                const newCache = homeCarouselCardsCache
+                newCache.push(result)
+                setHomeCarouselCardsCache(newCache)
                 setFetchResult(result)
+                setIsLoaded(true)
             } catch (err) {
                 console.log(err)
             }
         }
 
-        fetchAnimeInfo()
+        const result = homeCarouselCardsCache.find((animeInfo) => {
+            return animeInfo.id === id
+        })
+
+        if (!result) {
+            fetchAnimeInfo()
+        } else {
+            setFetchResult(result)
+            setIsLoaded(true)
+        }
+
+        
     }, []);
 
-    let truncatedDescription = fetchResult.description || '';
+    let truncatedDescription = fetchResult?.description || '';
 
     let truncatedTitle = title || '';
 
@@ -35,7 +53,7 @@ const HomeCarouselCard = ({ id, title, image }) => {
         truncatedTitle = truncatedTitle.slice(0, 50) + '...';
     }
 
-    const genreList = fetchResult.genres && fetchResult.genres.length > 0
+    const genreList = fetchResult?.genres && fetchResult?.genres.length > 0
         ? fetchResult.genres.join(" | ")
         : '';
 
@@ -45,7 +63,7 @@ const HomeCarouselCard = ({ id, title, image }) => {
 
     return (
         <HomeCarouselCardContainer $primaryColor={primaryColor} $tertiaryColor={tertiaryColor}>
-            {Object.keys(fetchResult).length > 0 ? 
+            {isLoaded ? 
                 <>
                     <div className="container">
                         <img src={image} className="anime_banner" alt="anime_banner" />

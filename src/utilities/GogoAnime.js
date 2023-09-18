@@ -20,7 +20,8 @@ export const searchAnime = async (query, page = 1) => {
  * @returns {object} list of recent eps
  */
 export const getRecentEpisodes = async (page = 1, perPage = 10, provider = "gogoanime") => {
-    const result = await axios.get(`https://consumet-org-api.vercel.app/meta/anilist/recent-episodes`, {params: {page: page, perPage: perPage, provider: provider}})
+    // const result = await axios.get(`https://api.consumet.org/meta/anilist/recent-episodes`, {params: {page: page, perPage: perPage, provider: provider}}) 
+    const result = await axios.get(`https://api.consumet.org/meta/anilist/recent-episodes`) 
     return result.data
 }
 

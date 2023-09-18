@@ -7,28 +7,32 @@ import { faArrowRight } from '@fortawesome/free-solid-svg-icons'
 import { faArrowLeft } from '@fortawesome/free-solid-svg-icons'
 import BlueButton from './BlueButton'
 import { themeContext } from '../context/themeContext'
+import { useHomeContentCache } from '../context/homeContentCacheContext'
 const mikuLoading = require("../assets/icons/loading.gif")
 
 const TrendingAnimeSection = () => {
     const { secondaryColor, tertiaryColor } = useContext(themeContext)
-    const [ fetchResult, setFetchResult ] = useState()
+    const { trendingAnimeCache: fetchResult, setTrendingAnimeCache: setFetchResult} = useHomeContentCache()
     const [ isLoaded, setIsLoaded ] = useState(false)
 
     useEffect(() => {
+      const getTopAnimeList = async () => {
 
-          const getTopAnimeList = async () => {
+        try {
+          const result = await getTopAiringAnime()
+          setFetchResult(result)
+          setIsLoaded(true)
+        } catch (err) {
+          console.log(err)
+        }
+        
+      }
 
-            try {
-              const result = await getTopAiringAnime()
-              setFetchResult(result)
-              setIsLoaded(true)
-            } catch (err) {
-              console.log(err)
-            }
-            
-          }
-          
-          getTopAnimeList()
+      if (fetchResult === undefined) {
+        getTopAnimeList()
+      } else {
+        setIsLoaded(true)
+      }
     }, [])
 
     const handleNextPage = async (currentPage) => {

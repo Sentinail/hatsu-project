@@ -18,6 +18,7 @@ import Account from "./page/Account";
 import PrivateRoute from "./components/PrivateRoute";
 import NegatedPrivateRoute from "./components/NegatedPrivateRoute";
 import PasswordReset from "./page/Password-Reset";
+import HomeContentCacheProvider from "./context/homeContentCacheContext";
 
 const ScrollToTop = () => {
 	const location = useLocation();
@@ -38,9 +39,11 @@ root.render(
 				path="/"
 				element={
 					<AuthProvider>
-						<ThemeContext>
-							<App></App>
-						</ThemeContext>
+						<HomeContentCacheProvider>
+							<ThemeContext>
+								<App></App>
+							</ThemeContext>
+						</HomeContentCacheProvider>
 					</AuthProvider>
 				}
 			>
