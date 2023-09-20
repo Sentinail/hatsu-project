@@ -22,6 +22,13 @@ export const AiringAnimeContainer = styled.div`
         border: 1px solid ${props => {return props.$tertiaryColor}};
         border-radius: 10px;
         padding: 20px;
+
+        @media screen and (max-width: 680px) {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
     }
 
     .airing_info {
@@ -76,7 +83,6 @@ export const AnimeAiringCellContainer = styled.div`
         display: flex;
         flex-direction: column;
         gap: 20px;
-        align-items: center;
     }
     
     

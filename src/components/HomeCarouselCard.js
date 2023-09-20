@@ -1,6 +1,6 @@
 import { HomeCarouselCardContainer } from '../styled-components/HomeCarouselCardContainer';
 import { getAnimeInfo } from '../utilities/GogoAnime';
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useState, useEffect, useContext, useRef } from 'react';
 import { themeContext } from '../context/themeContext';
 import { useNavigate } from "react-router-dom";
 import { useHomeContentCache } from '../context/homeContentCacheContext';
@@ -12,6 +12,15 @@ const HomeCarouselCard = ({ id, title, image }) => {
     const { primaryColor, tertiaryColor } = useContext(themeContext);
     const [ isLoaded, setIsLoaded ] = useState(false)
     const navigate = useNavigate()
+    const description = useRef()
+
+    useEffect(() => {
+        console.log(description.current)
+        if (description.current) {
+            description.current.innerHTML = fetchResult?.description
+        }
+         
+    }, [fetchResult])
 
     useEffect(() => {
         const fetchAnimeInfo = async () => {
@@ -41,13 +50,8 @@ const HomeCarouselCard = ({ id, title, image }) => {
         
     }, []);
 
-    let truncatedDescription = fetchResult?.description || '';
 
     let truncatedTitle = title || '';
-
-    if (truncatedDescription.length > 200) {
-        truncatedDescription = truncatedDescription.slice(0, 200) + '...';
-    }
 
     if (truncatedTitle.length > 50) {
         truncatedTitle = truncatedTitle.slice(0, 50) + '...';
@@ -70,7 +74,7 @@ const HomeCarouselCard = ({ id, title, image }) => {
                         <div className="info">
                             <h1> {truncatedTitle} </h1>
                             <p> {genreList} </p>
-                            <p> {truncatedDescription} </p>
+                            <p ref={description} className='description'></p>
                             <button className='watch_now_button' onClick={(handleNavigate)}> Watch Now </button>
                         </div>
                     </div>

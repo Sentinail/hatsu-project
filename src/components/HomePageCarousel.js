@@ -16,7 +16,6 @@ const HomeCarousel = () => {
             try {
                 const result = await getTopAiringAnime();
                 setFetchResult(result)
-                console.log("fetch")
                 setLoaded(true)
 
             } catch (err) {

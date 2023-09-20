@@ -23,6 +23,11 @@ export const HomeCarouselCardContainer = styled.div`
         gap: 30px;
         position: relative;
 
+        .description {
+            max-height: 100px;
+            overflow: hidden;
+        }
+
         .watch_now_button {
             height: 40px;
             width: 150px;
@@ -38,6 +43,7 @@ export const HomeCarouselCardContainer = styled.div`
             min-width: 360px;
             aspect-ratio: 460/650;
             border-radius: 5px;
+            object-fit: contain;
         }
 
         .info {

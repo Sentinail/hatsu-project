@@ -5,7 +5,6 @@ import { themeContext } from '../context/themeContext'
 
 const Watch = () => {
     const { secondaryColor } = useContext(themeContext)
-    console.log("Watch")
 
     return (
         <>
