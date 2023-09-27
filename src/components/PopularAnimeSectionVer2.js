@@ -55,7 +55,7 @@ const PopularAnimeSectionVer2 = () => {
     return (
         <PopularAnimeSectionContainerV2 $secondaryColor={secondaryColor} $tertiaryColor={tertiaryColor}>
             <section>
-              { fetchResult &&
+              { fetchResult ?
                 <div className="section_header">
                   <h1 className='section_title'> Popular Anime </h1>
                   <div className="section_navbar">
@@ -64,6 +64,21 @@ const PopularAnimeSectionVer2 = () => {
                   </BlueButton>
                   <p> {fetchResult.currentPage} </p>
                   <BlueButton isDisabled={!(fetchResult.hasNextPage) || !isLoaded } onClick={() => {handleNextPage(fetchResult.currentPage)}}>
+                      <FontAwesomeIcon icon={faArrowRight} size='xl' />
+                  </BlueButton>
+                  </div>
+                </div>
+
+                :
+
+                <div className="section_header">
+                  <h1 className='section_title'> Popular Anime </h1>
+                  <div className="section_navbar">
+                  <BlueButton isDisabled={true}>
+                      <FontAwesomeIcon icon={faArrowLeft} size='xl' />
+                  </BlueButton>
+                  <p> null </p>
+                  <BlueButton isDisabled={true}>
                       <FontAwesomeIcon icon={faArrowRight} size='xl' />
                   </BlueButton>
                   </div>

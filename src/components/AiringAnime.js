@@ -47,6 +47,35 @@ const AnimeAiringCell = ({ anime, ...props }) => {
 	);
 };
 
+const AnimeAiringCellLoadingSkeleton = ({numberOfCells}) => {
+
+	const generateCells = (numberOfCells) => {
+		const components = []
+
+		for (let i = 0; i < numberOfCells; i++) {
+			components.push(
+				<AnimeAiringCellContainer key={i}>
+					<div className="loading_skeleton">
+						<img
+							className="loading"
+							src={mikuLoading}
+							alt="Loading..."
+						></img>
+					</div>
+				</AnimeAiringCellContainer>
+			)
+		}
+
+		return components
+	}
+
+	return (
+		<>
+			{generateCells(numberOfCells)}
+		</>
+	)
+}
+
 const AiringAnime = () => {
 	const { tertiaryColor } = useThemeContext(themeContext);
 	const {
@@ -71,11 +100,11 @@ const AiringAnime = () => {
 
 	return (
 		<AiringAnimeContainer $tertiaryColor={tertiaryColor}>
+			<div className="header">
+				<h1> Airing Schedule </h1>
+			</div>
 			{isLoaded ? (
 				<>
-					<div className="header">
-						<h1> Airing Schedule </h1>
-					</div>
 
 					<div className="airing_anime_content">
 						{fetchResult.data.Page.airingSchedules.map((media, index) => {
@@ -89,12 +118,8 @@ const AiringAnime = () => {
 					</div>
 				</>
 			) : (
-				<div className="loading_container">
-					<img
-						className="loading"
-						src={mikuLoading}
-						alt="Loading..."
-					></img>
+				<div className="airing_anime_content">
+					<AnimeAiringCellLoadingSkeleton numberOfCells={10}></AnimeAiringCellLoadingSkeleton>
 				</div>
 			)}
 		</AiringAnimeContainer>

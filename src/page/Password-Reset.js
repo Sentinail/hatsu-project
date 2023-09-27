@@ -7,6 +7,7 @@ import { useFormik } from 'formik'
 import { passwordResetSchema } from '../formValidationSchema/passwordResetSchema'
 import BlueButton from '../components/BlueButton'
 import { Link } from 'react-router-dom'
+import { Helmet } from 'react-helmet'
 
 const PasswordResetForm = () => {
     const { resetPassword } = useAuth()
@@ -44,11 +45,16 @@ const PasswordReset = () => {
     const { secondaryColor } = useContext(themeContext)
 
   return (
-    <PasswordResetContainer $secondaryColor={secondaryColor}>
-        <PasswordResetForm>
+    <>
+      <Helmet>
+        <title>Hatsu | Password Reset</title>
+      </Helmet>
+      <PasswordResetContainer $secondaryColor={secondaryColor}>
+          <PasswordResetForm>
 
-        </PasswordResetForm>
-    </PasswordResetContainer>
+          </PasswordResetForm>
+      </PasswordResetContainer>
+    </>
   )
 }
 

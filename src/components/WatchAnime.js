@@ -5,6 +5,7 @@ import { Outlet, useNavigate, useParams } from "react-router-dom";
 import { getAnimeInfo } from "../utilities/GogoAnime";
 import { AnimeEpisodesListContainer } from "../styled-components/AnimeEpisodesListContainer";
 import BlueButton from "./BlueButton";
+import { Helmet } from "react-helmet";
 const loadingMiku = require("../assets/icons/loading.gif");
 
 const AnimeEpisodeList = ({ episodes, nextAiringTime }) => {
@@ -191,6 +192,10 @@ const WatchAnime = () => {
 		<WatchAnimeContainer $tertiaryColor={tertiaryColor}>
 			<>
 				{loaded ? (
+				<>
+					<Helmet>
+					<title>Hatsu | Watch {fetchResult.title.romaji} </title>
+				  	</Helmet>
 					<div className="anime_info">
 						<div className="anime_watch">
 							<Outlet></Outlet>
@@ -234,7 +239,7 @@ const WatchAnime = () => {
 							</div>
 						</div>
 					</div>
-				) : (
+				</>) : (
 					<div className="loading_container">
 						<img
 							className="loading"

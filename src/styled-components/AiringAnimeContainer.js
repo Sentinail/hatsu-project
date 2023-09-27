@@ -66,6 +66,14 @@ export const AnimeAiringCellContainer = styled.div`
     gap: 20px;
     position: relative;
 
+    .loading_skeleton {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
     .episode_button {
         min-width: 100px;
         padding: 10px;  
