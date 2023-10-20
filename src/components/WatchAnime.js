@@ -83,8 +83,8 @@ const AnimeEpisodeList = ({ episodes, nextAiringTime }) => {
 	};
 
     const handleWatch = (id) => {
-        navigate(`${id}`)
-    }
+		navigate(id.replace(/\//g, ''));
+	}
 
 	
 	const pages = [];
