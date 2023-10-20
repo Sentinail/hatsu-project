@@ -8,7 +8,7 @@ import axios from "axios";
  * @returns {object} list of animes
  */
 export const searchAnime = async (query, page = 1) => {
-    const result = await axios.get(`https://consumet-org-api.vercel.app/meta/anilist/${query}`, {params: {page: page}})
+    const result = await axios.get(`${process.env.REACT_APP_API_ENDPOINT}/meta/anilist/${query}`, {params: {page: page}})
     return result.data
 }
 
@@ -21,7 +21,7 @@ export const searchAnime = async (query, page = 1) => {
  */
 export const getRecentEpisodes = async (page = 1, perPage = 10, provider = "gogoanime") => {
     // const result = await axios.get(`https://api.consumet.org/meta/anilist/recent-episodes`, {params: {page: page, perPage: perPage, provider: provider}}) 
-    const result = await axios.get(`https://api.consumet.org/meta/anilist/recent-episodes`) 
+    const result = await axios.get(`${process.env.REACT_APP_API_ENDPOINT}/meta/anilist/recent-episodes`) 
     return result.data
 }
 
@@ -32,7 +32,7 @@ export const getRecentEpisodes = async (page = 1, perPage = 10, provider = "gogo
  * @returns {object} list of recent eps
  */
 export const getPopularAnime = async (page = 1, perPage = 10) => {
-    const result = await axios.get(`https://consumet-org-api.vercel.app/meta/anilist/popular`, {params: {page: page, perPage: perPage}})
+    const result = await axios.get(`${process.env.REACT_APP_API_ENDPOINT}/meta/anilist/popular`, {params: {page: page, perPage: perPage}})
     return result.data
 }
 
@@ -43,7 +43,7 @@ export const getPopularAnime = async (page = 1, perPage = 10) => {
  * @returns {object} list of recent eps
  */
 export const getTopAiringAnime = async (page = 1, perPage = 10) => {
-    const result = await axios.get(`https://consumet-org-api.vercel.app/meta/anilist/trending`, {params: {page: page, perPage: perPage}})
+    const result = await axios.get(`${process.env.REACT_APP_API_ENDPOINT}/meta/anilist/trending`, {params: {page: page, perPage: perPage}})
     return result.data
 }
 
@@ -54,7 +54,7 @@ export const getTopAiringAnime = async (page = 1, perPage = 10) => {
  * @returns {object} list of recent eps
  */
 export const getAnimeInfo = async (id, provider = "gogoanime") => {
-    const result = await axios.get(`https://consumet-org-api.vercel.app/meta/anilist/info/${id}`, {params: {provider: provider}})
+    const result = await axios.get(`${process.env.REACT_APP_API_ENDPOINT}/meta/anilist/info/${id}`, {params: {provider: provider}})
     return result.data
 }
 
@@ -65,12 +65,12 @@ export const getAnimeInfo = async (id, provider = "gogoanime") => {
  * @returns {object} list of recent eps
  */
 export const getAnimeEPStreamLinks = async (episodeId) => {
-    const result = await axios.get(`https://consumet-org-api.vercel.app/meta/anilist/watch/${episodeId}`)
+    const result = await axios.get(`${process.env.REACT_APP_API_ENDPOINT}/meta/anilist/watch/${episodeId}`)
     return result.data
 }
 
 export const getAiringAnimeSchedule = async (page = 1, perPage = 10, weekStart = "today's date", weekEnd = "today's date + 7 days", notYetAired = false) => {
-    const result = await axios.get(`https://consumet-org-api.vercel.app/meta/anilist/airing-schedule`, {
+    const result = await axios.get(`${process.env.REACT_APP_API_ENDPOINT}/meta/anilist/airing-schedule`, {
         params: {   
             perPage,
         }
